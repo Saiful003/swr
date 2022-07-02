@@ -8,17 +8,14 @@ type props = {
 };
 
 function Layout({ children }: props) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const openDrawer = () => setIsDrawerOpen(true);
-  const closeDrawer = () => setIsDrawerOpen(false);
   return (
     <>
-      <Header openDrawer={openDrawer} />
+      <Header />
       <main>
         <div className="w-[90%] max-w-6xl mx-auto px-5">{children}</div>
       </main>
-      <SideBar isDrawerOpen={isDrawerOpen} />
-      <OverLay closeDrawer={closeDrawer} isDrawerOpen={isDrawerOpen} />
+      <SideBar />
+      <OverLay />
     </>
   );
 }

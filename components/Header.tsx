@@ -1,11 +1,10 @@
 import { AiOutlineMenu } from "react-icons/ai";
+import { useBlog } from "../context/BlogContext";
 import NavList from "./NavList";
 
-type props = {
-  openDrawer: () => void;
-};
+function Header() {
+  const { openDrawer } = useBlog();
 
-function Header({ openDrawer }: props) {
   return (
     <header className="bg-blue-600">
       <div className=" w-[90%] max-w-6xl mx-auto px-5">
