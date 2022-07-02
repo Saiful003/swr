@@ -21,7 +21,7 @@ const Home: NextPage = () => {
 
       {/* Header */}
       <header className="bg-blue-600">
-        <div className=" max-w-6xl mx-auto px-5">
+        <div className=" w-[90%] max-w-6xl mx-auto px-5">
           <div className="h-[150px] flex items-center justify-between">
             <div>
               <h2 className=" text-2xl text-white">Logo</h2>
