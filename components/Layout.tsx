@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import OverLay from "./OverLay";
-import SideBar from "./SideBar";
+import Drawer from "./Drawer";
+import FixedSidebar from "./FixedSidebar";
 
 type props = {
   children: React.ReactNode;
@@ -11,10 +12,13 @@ function Layout({ children }: props) {
   return (
     <>
       <Header />
-      <main>
-        <div className="w-[90%] max-w-6xl mx-auto px-5">{children}</div>
-      </main>
-      <SideBar />
+      <div className="flex gap-[2.5em] ">
+        <FixedSidebar />
+        <main className="flex-grow">
+          <div className="mt-4">{children}</div>
+        </main>
+      </div>
+      <Drawer />
       <OverLay />
     </>
   );

@@ -1,8 +1,7 @@
-type props = {
-  closeDrawer: () => void;
-  isDrawerOpen: boolean;
-};
-function OverLay({ closeDrawer, isDrawerOpen }: props) {
+import { useBlog } from "../context/BlogContext";
+
+function OverLay() {
+  const { closeDrawer, isDrawerOpen } = useBlog();
   return (
     <div
       onClick={closeDrawer}
