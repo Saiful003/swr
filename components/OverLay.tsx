@@ -1,13 +1,17 @@
 import { useBlog } from "../context/BlogContext";
 
-function OverLay() {
+interface IProps {
+  active?: boolean;
+}
+
+function OverLay({ active }: IProps) {
   const { closeDrawer, isDrawerOpen } = useBlog();
   return (
     <div
       onClick={closeDrawer}
-      className={`fixed  cursor-pointer inset-0 bg-white opacity-0 pointer-events-none md:opacity-0  ${
-        isDrawerOpen && "  opacity-40 pointer-events-auto"
-      }`}
+      className={`fixed inset-0 bg-black opacity-0 pointer-events-none  ${
+        isDrawerOpen && "opacity-50 pointer-events-auto md:opacity-0"
+      } ${active && "opacity-50 pointer-events-auto"} `}
     ></div>
   );
 }

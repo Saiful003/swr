@@ -2,13 +2,14 @@ import Link from "next/link";
 
 type props = {
   linkName: string;
+  onClick?: () => void;
 };
 
-function NavList({ linkName }: props) {
+function NavList({ linkName, ...rest }: props) {
   return (
-    <li>
+    <li {...rest}>
       <Link href="/">
-        <a className="text-white font-semibold text-lg "> {linkName} </a>
+        <a className=" font-semibold text-lg "> {linkName} </a>
       </Link>
     </li>
   );

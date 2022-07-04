@@ -8,7 +8,7 @@ import {
 
 function FixedSidebar() {
   return (
-    <div className="w-[80px] md:w-[250px] min-h-[calc(100vh-150px)] shrink-0 border flex flex-col items-center justify-around md:justify-start md:items-start md:gap-2 md:pt-4 shadow-lg">
+    <div className="w-[80px] md:w-[250px] h-[calc(100vh-61px)]  shrink-0 flex flex-col items-center pt-4 md:justify-start md:items-start gap-2 md:gap-3 border-r overflow-y-hidden hover:overflow-y-scroll">
       <Icon
         icon={<AiOutlineShoppingCart size={30} cursor="pointer" />}
         text="Cart"
@@ -20,6 +20,38 @@ function FixedSidebar() {
       <Icon
         icon={<AiOutlineAmazon size={30} cursor="pointer" />}
         text="Amazon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
+      />
+      <Icon
+        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
+        text="Icon"
       />
       <Icon
         icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
