@@ -1,15 +1,15 @@
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
 import { useBlog } from "../context/BlogContext";
+import useDrawer from "../hooks/useDrawer";
+import useModal from "../hooks/useModal";
 import Modal from "./Modal";
 import NavList from "./NavList";
 import OverLay from "./OverLay";
 
 function Header() {
-  const { openDrawer } = useBlog();
-  const [isOpenModal, setIsOpenModal] = useState(false);
-  const closeModel = () => setIsOpenModal(false);
-  const openModel = () => setIsOpenModal(true);
+  const { isOpenModal, closeModal, openModal } = useModal();
+  const { openDrawer } = useDrawer();
 
   return (
     <header className=" border-b">
@@ -23,7 +23,7 @@ function Header() {
               <NavList linkName="Home" />
               <NavList linkName="Blog" />
               <NavList linkName="Portfolio" />
-              <NavList linkName="Login" onClick={openModel} />
+              <NavList linkName="Login" onClick={openModal} />
             </ul>
           </div>
           <div className="md:hidden">
@@ -35,7 +35,7 @@ function Header() {
           </div>
         </div>
       </div>
-      {isOpenModal && <Modal closeModal={closeModel} active={isOpenModal} />}
+      {isOpenModal && <Modal closeModal={closeModal} active={isOpenModal} />}
       <OverLay active={isOpenModal} />
     </header>
   );

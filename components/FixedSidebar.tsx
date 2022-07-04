@@ -5,6 +5,7 @@ import {
   AiOutlineAmazon,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import useModal from "../hooks/useModal";
 
 function FixedSidebar() {
   return (
