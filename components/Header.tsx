@@ -1,11 +1,10 @@
-import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useBlog } from "../context/BlogContext";
 import useDrawer from "../hooks/useDrawer";
 import useModal from "../hooks/useModal";
+import Button from "./Button";
 import Modal from "./Modal";
-import NavList from "./NavList";
 import OverLay from "./OverLay";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Header() {
   const { isOpenModal, closeModal, openModal } = useModal();
@@ -19,11 +18,13 @@ function Header() {
             <h2 className=" text-4xl font-medium text-purple-700">Pro-File</h2>
           </div>
           <div className="hidden md:block">
-            <ul className="flex gap-5">
-              <NavList linkName="Home" />
-              <NavList linkName="Blog" />
-              <NavList linkName="Portfolio" />
-              <NavList linkName="Login" onClick={openModal} />
+            <ul className="flex items-center gap-5">
+              <Button icon={<AiOutlinePlus />} onClick={openModal}>
+                Upload
+              </Button>
+              <Button onClick={openModal} fill>
+                Log in
+              </Button>
             </ul>
           </div>
           <div className="md:hidden">

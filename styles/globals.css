@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer {
+  .sidebar__icon__wrapper {
+    @apply flex justify-center cursor-pointer transition-colors lg:hover:bg-neutral-100 lg:items-center lg:py-1 lg:rounded-md;
+  }
+}
+
 html,
 body {
   padding: 0;

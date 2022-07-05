@@ -1,67 +1,22 @@
 import Icon from "./Icon";
-import {
-  AiOutlineAccountBook,
-  AiOutlineAlibaba,
-  AiOutlineAmazon,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
+import { AiFillHome } from "react-icons/ai";
+import { TbUsers } from "react-icons/tb";
 import useModal from "../hooks/useModal";
+import Button from "./Button";
 
 function FixedSidebar() {
+  const { openModal } = useModal();
   return (
-    <div className="w-[80px] md:w-[250px] h-[calc(100vh-61px)]  shrink-0 flex flex-col items-center pt-4 md:justify-start md:items-start gap-2 md:gap-3 border-r overflow-y-hidden hover:overflow-y-scroll">
-      <Icon
-        icon={<AiOutlineShoppingCart size={30} cursor="pointer" />}
-        text="Cart"
-      />
-      <Icon
-        icon={<AiOutlineAlibaba size={30} cursor="pointer" />}
-        text="Ali-Baba"
-      />
-      <Icon
-        icon={<AiOutlineAmazon size={30} cursor="pointer" />}
-        text="Amazon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
-      <Icon
-        icon={<AiOutlineAccountBook size={30} cursor="pointer" />}
-        text="Icon"
-      />
+    <div className="w-[80px] lg:w-[350px] h-[calc(100vh-61px)] shrink-0 pt-4">
+      <Icon icon={<AiFillHome size={25} />} text="For You" active />
+      <Icon icon={<TbUsers size={25} />} text="Following" />
+      <hr className=" w-11 mx-auto lg:w-full" />
+      <p className=" hidden lg:block text-gray-400">
+        Log in to follow creators, like videos, and view comments.
+      </p>
+      <Button outlined loginLg hiddenWhenSmall onClick={openModal}>
+        Log in
+      </Button>
     </div>
   );
 }

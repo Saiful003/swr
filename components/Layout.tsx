@@ -12,7 +12,7 @@ function Layout({ children }: props) {
   return (
     <>
       <Header />
-      <div className="w-full max-w-6xl mx-auto">
+      <div className="w-full max-w-6xl mx-auto ">
         <div className="flex gap-[2.5em] ">
           <FixedSidebar />
           <main className="flex-grow self-start">

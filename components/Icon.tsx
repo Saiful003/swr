@@ -1,15 +1,25 @@
 import React from "react";
+import classNames from "classnames";
 
 interface IProps {
   icon: React.ReactNode;
   text: string;
+  active?: boolean;
 }
 
-function Icon({ icon, text }: IProps) {
+function Icon({ icon, text, active }: IProps) {
   return (
-    <div className="flex flex-col items-center md:flex-row md:w-full gap-2 cursor-pointer md:py-2 md:hover:bg-blue-500 md:hover:text-white md:pl-3">
-      <div>{icon}</div>
-      <p className=" font-medium text-md "> {text} </p>
+    <div
+      className={classNames("sidebar__icon__wrapper", {
+        "text-red-500": active,
+      })}
+    >
+      <div
+        className={`py-2 px-3 transition-colors hover:bg-neutral-100 mb-2 lg:mb-0  `}
+      >
+        {icon}
+      </div>
+      <p className=" hidden lg:block font-bold text-lg flex-grow "> {text} </p>
     </div>
   );
 }

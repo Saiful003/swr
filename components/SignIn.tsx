@@ -13,11 +13,7 @@ function SignIn() {
         Sign in to Pro-File
       </h2>
       <div>
-        <AuthVia icon={<AiOutlineQrcode size={20} />} way="Use QR Code" />
-        <AuthVia
-          icon={<AiOutlineUser size={20} />}
-          way="Use phone / email / username"
-        />
+        <AuthVia icon={<AiOutlineUser size={20} />} way="Use phone or email" />
         <AuthVia
           icon={<BsFacebook className="fill-blue-500" size={20} />}
           way="Continue with Facebook"
