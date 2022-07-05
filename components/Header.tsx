@@ -5,6 +5,7 @@ import Button from "./Button";
 import Modal from "./Modal";
 import OverLay from "./OverLay";
 import { AiOutlinePlus } from "react-icons/ai";
+import Container from "./Container";
 
 function Header() {
   const { isOpenModal, closeModal, openModal } = useModal();
@@ -12,7 +13,7 @@ function Header() {
 
   return (
     <header className=" border-b">
-      <div className=" w-full px-3 max-w-6xl mx-auto">
+      <Container>
         <div className="h-[60px] flex items-center justify-between">
           <div>
             <h2 className=" text-4xl font-medium text-purple-700">Pro-File</h2>
@@ -35,7 +36,8 @@ function Header() {
             />
           </div>
         </div>
-      </div>
+      </Container>
+
       {isOpenModal && <Modal closeModal={closeModal} active={isOpenModal} />}
       <OverLay active={isOpenModal} />
     </header>

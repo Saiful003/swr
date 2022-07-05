@@ -4,7 +4,7 @@
 
 @layer {
   .sidebar__icon__wrapper {
-    @apply flex justify-center cursor-pointer transition-colors lg:hover:bg-neutral-100 lg:items-center lg:py-1 lg:rounded-md;
+    @apply flex justify-center items-center cursor-pointer lg:hover:bg-neutral-100 rounded-md;
   }
 }
 

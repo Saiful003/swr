@@ -42,11 +42,11 @@ function Button({
             outlined,
         },
         {
-          "border text-center text-lg font-bold py-3 text-red-500 hover:bg-red-100 rounded-sm border-red-500 lg:block":
+          "border text-center text-lg font-bold py-2 text-red-500 hover:bg-red-100 rounded-sm border-red-500 lg:block":
             outlined && loginLg,
         },
         {
-          " hidden": hiddenWhenSmall,
+          hidden: hiddenWhenSmall,
         },
         {
           "bg-red-500 py-2 px-6 text-white hover:bg-red-600 font-bold rounded-md":
