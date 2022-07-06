@@ -5,7 +5,10 @@ import Button from "./Button";
 import Modal from "./Modal";
 import OverLay from "./OverLay";
 import { AiOutlinePlus } from "react-icons/ai";
+import { FiMoreVertical } from "react-icons/fi";
 import Container from "./Container";
+import DropDown from "./DropDown";
+import HasTag from "./HasTag";
 
 function Header() {
   const { isOpenModal, closeModal, openModal } = useModal();
@@ -23,8 +26,11 @@ function Header() {
               <Button icon={<AiOutlinePlus />} onClick={openModal}>
                 Upload
               </Button>
-              <Button onClick={openModal} fill>
+              <Button fill onClick={openModal}>
                 Log in
+              </Button>
+              <Button icon={<FiMoreVertical size={23} />} isBorder={false}>
+                <DropDown />
               </Button>
             </ul>
           </div>

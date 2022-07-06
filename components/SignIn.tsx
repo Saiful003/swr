@@ -1,7 +1,7 @@
 import AuthVia from "./AuthVia";
 import { BsFacebook, BsTwitter } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { AiOutlineQrcode, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useState } from "react";
 function SignIn() {

@@ -4,6 +4,9 @@ import { TbUsers } from "react-icons/tb";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
 import Divider from "./Divider";
+import HasTag from "./HasTag";
+import HasTagRow from "./HasTagRow";
+import FixedSideBarFooter from "./FixedSideBarFooter";
 
 function FixedSidebar() {
   const { openModal } = useModal();
@@ -23,6 +26,23 @@ function FixedSidebar() {
         </Button>
       </div>
       <Divider hiddenInMobile />
+      <div className="hidden lg:block mb-4">
+        <p className=" my-4 text-gray-400 font-normal">Discover</p>
+        <HasTagRow>
+          <HasTag text="eidulazha" />
+          <HasTag text="mangoseason" />
+        </HasTagRow>
+        <HasTagRow>
+          <HasTag text="ekshoteeksho" />
+          <HasTag text="tiktokvlog" />
+        </HasTagRow>
+        <HasTagRow>
+          <HasTag text="priyobaba" />
+        </HasTagRow>
+      </div>
+      <Divider hiddenInMobile />
+      {/* fixed sidebar footer */}
+      <FixedSideBarFooter />
     </div>
   );
 }
