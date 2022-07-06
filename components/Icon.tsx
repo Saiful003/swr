@@ -12,19 +12,15 @@ function Icon({ icon, text, active, last }: IProps) {
   return (
     <div
       className={classNames(
-        "sidebar__icon__wrapper",
+        "icon__container",
         {
           "text-red-500": active,
         },
         { "lg:mb-2": last }
       )}
     >
-      <div
-        className={`aspect-square p-3 transition-colors hover:bg-neutral-100 mb-2 lg:mb-0  `}
-      >
-        {icon}
-      </div>
-      <p className=" hidden lg:block font-bold text-lg flex-grow "> {text} </p>
+      <div className="sidebar__icon__wrapper">{icon}</div>
+      <p className="hidden lg:block font-bold text-lg flex-grow"> {text} </p>
     </div>
   );
 }

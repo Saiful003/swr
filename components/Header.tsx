@@ -6,9 +6,8 @@ import Modal from "./Modal";
 import OverLay from "./OverLay";
 import { AiOutlinePlus } from "react-icons/ai";
 import { FiMoreVertical } from "react-icons/fi";
-import Container from "./Container";
 import DropDown from "./DropDown";
-import HasTag from "./HasTag";
+import Container from "./Container";
 
 function Header() {
   const { isOpenModal, closeModal, openModal } = useModal();
