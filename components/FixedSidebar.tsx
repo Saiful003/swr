@@ -11,7 +11,7 @@ import FixedSideBarFooter from "./FixedSideBarFooter";
 function FixedSidebar() {
   const { openModal } = useModal();
   return (
-    <div className="sidebar__container">
+    <div className="sidebar__container border-r lg:border-none">
       <Icon icon={<AiFillHome size={25} />} text="For You" active />
       <Icon last icon={<TbUsers size={25} />} text="Following" />
 

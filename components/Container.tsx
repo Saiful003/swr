@@ -5,7 +5,7 @@ interface Ipros {
 }
 function Container({ children }: Ipros) {
   return (
-    <div className="max-w-6xl mx-auto px-5 w-full lg:w-[95%]"> {children} </div>
+    <div className="max-w-6xl mx-auto px-5 w-full lg:w-[99%]"> {children} </div>
   );
 }
 
