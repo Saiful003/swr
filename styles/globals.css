@@ -10,7 +10,7 @@
     @apply p-3 lg:p-0 rounded-md aspect-square transition-colors hover:bg-neutral-100 mb-2 lg:mb-0;
   }
   .sidebar__container {
-    @apply w-[80px]  lg:w-[350px] h-[calc(100vh-61px)] shrink-0 -ml-5 lg:ml-0 pt-4;
+    @apply w-[80px] lg:w-[350px] min-h-[calc(100vh-61px)] shrink-0 -ml-5 lg:ml-0 pt-4;
   }
 }
 

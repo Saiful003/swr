@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 interface IProps {
   icon: React.ReactNode;
-  text: string;
+  text?: string;
   active?: boolean;
   last?: boolean;
 }

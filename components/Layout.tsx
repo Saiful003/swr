@@ -14,9 +14,9 @@ function Layout({ children }: props) {
     <>
       <Header />
       <Container>
-        <div className="flex gap-[2.5em] ">
+        <div className="flex gap-[2.5em]  ">
           <FixedSidebar />
-          <main className="flex-grow self-start">
+          <main className="flex-grow">
             <div className="mt-4">{children}</div>
           </main>
         </div>
