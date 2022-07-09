@@ -14,40 +14,41 @@ function Header() {
   const { openDrawer } = useDrawer();
 
   return (
-    <header className="border-b">
-      <Container>
-        <div className="h-[60px] flex items-center justify-between">
-          <div>
-            <Link href="/">
-              <a>
-                <h2 className=" text-3xl font-medium text-red-500">MyTok</h2>
-              </a>
-            </Link>
+    <>
+      <header className="border-b sticky top-0">
+        <Container>
+          <div className="h-[60px] flex items-center justify-between">
+            <div>
+              <Link href="/">
+                <a>
+                  <h2 className=" text-3xl font-medium text-red-500">MyTok</h2>
+                </a>
+              </Link>
+            </div>
+            <div className="hidden md:block">
+              <ul className="flex items-center gap-5">
+                <Button icon={<AiOutlinePlus />} onClick={openModal}>
+                  Upload
+                </Button>
+                <Button fill onClick={openModal}>
+                  Log in
+                </Button>
+                <FiMoreVertical size={20} cursor="pointer" />
+              </ul>
+            </div>
+            <div className="md:hidden">
+              <AiOutlineMenu
+                onClick={openDrawer}
+                className="cursor-pointer text-gray-900"
+                size={25}
+              />
+            </div>
           </div>
-          <div className="hidden md:block">
-            <ul className="flex items-center gap-5">
-              <Button icon={<AiOutlinePlus />} onClick={openModal}>
-                Upload
-              </Button>
-              <Button fill onClick={openModal}>
-                Log in
-              </Button>
-              <FiMoreVertical size={20} cursor="pointer" />
-            </ul>
-          </div>
-          <div className="md:hidden">
-            <AiOutlineMenu
-              onClick={openDrawer}
-              className="cursor-pointer text-gray-900"
-              size={25}
-            />
-          </div>
-        </div>
-      </Container>
-
+        </Container>
+      </header>
       {isOpenModal && <Modal closeModal={closeModal} active={isOpenModal} />}
       <OverLay active={isOpenModal} />
-    </header>
+    </>
   );
 }
 
