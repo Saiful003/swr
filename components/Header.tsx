@@ -22,7 +22,7 @@ function Header() {
             <div>
               <Link href="/">
                 <a>
-                  <h2 className=" text-3xl font-medium text-red-500">MyTok</h2>
+                  <h2 className="text-3xl font-medium text-red-500">MyTok</h2>
                 </a>
               </Link>
             </div>
@@ -36,7 +36,7 @@ function Header() {
               <BsSearch size={20} className="text-gray-400 cursor-pointer" />
               <button type="submit" hidden />
             </form>
-            <div className="hidden md:block">
+            <div>
               <ul className="flex items-center gap-5">
                 <Button icon={<AiOutlinePlus />} onClick={openModal}>
                   Upload
