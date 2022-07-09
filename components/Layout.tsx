@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Header";
 import OverLay from "./OverLay";
-import Drawer from "./Drawer";
 import FixedSidebar from "./FixedSidebar";
 import Container from "./Container";
 
@@ -21,8 +20,6 @@ function Layout({ children }: props) {
           </main>
         </div>
       </Container>
-
-      <Drawer />
       <OverLay />
     </>
   );
