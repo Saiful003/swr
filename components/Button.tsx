@@ -45,12 +45,12 @@ function Button({
           hidden: hiddenWhenSmall,
         },
         {
-          "bg-red-500 py-2 px-6 border-none text-white hover:bg-red-600 font-bold rounded-md":
+          "bg-red-500 shrink-0 py-2 px-6 border-none text-white hover:bg-red-600 font-bold rounded-md":
             fill,
         }
       )}
     >
-      {icon && <div>{icon}</div>}
+      {icon && <div className="shrink-0">{icon}</div>}
       {children}
     </a>
   );
