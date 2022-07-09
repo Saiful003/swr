@@ -15,7 +15,7 @@ function Header() {
 
   return (
     <>
-      <header className="border-b sticky top-0">
+      <header className="border-b sticky top-0 bg-white">
         <Container>
           <div className="h-[60px] flex items-center justify-between">
             <div>
