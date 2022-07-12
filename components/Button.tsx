@@ -20,7 +20,6 @@ function Button({
   fill,
   outlined,
   loginLg,
-  isBorder = true,
 }: IProps) {
   return (
     <a

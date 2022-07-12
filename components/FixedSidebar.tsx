@@ -10,7 +10,7 @@ import FixedSideBarFooter from "./FixedSideBarFooter";
 function FixedSidebar() {
   const { openModal } = useModal();
   return (
-    <div className="w-[80px] border-r h-[calc(100vh-61px)] shrink-0 sticky top-[61px] -ml-5 pt-4 lg:w-[350px] lg:ml-0  ">
+    <div className="w-[80px] border-r h-[calc(100vh-61px)] shrink-0 sticky top-[61px] -ml-5 pt-4 lg:w-[350px] lg:ml-0 lg:border-none  ">
       <Icon icon={<AiFillHome size={25} />} text="For You" active />
       <Icon last icon={<TbUsers size={25} />} text="Following" />
 
@@ -27,7 +27,7 @@ function FixedSidebar() {
       <Divider hiddenInMobile />
       <div className="hidden lg:block mb-4">
         <p className=" my-4 text-gray-400 font-normal">Discover</p>
-        <div className="flex xl:flex-col  flex-wrap gap-2 mb-2 last:mb-0">
+        <div className="flex flex-wrap gap-2 mb-2 last:mb-0">
           <HasTag text="eidulazha" />
           <HasTag text="mangoseason" />
           <HasTag text="ekshoteeksho" />

@@ -15,7 +15,7 @@ function Modal({ active, closeModal }: IProps) {
 
   return (
     <div
-      className={`w-[490px] h-[555px] flex flex-col rounded-lg z-50 fixed p-3 bg-white top-1/2 left-1/2 transition-all translate-x-[-50%] translate-y-[-50%] scale-0 shadow-md   ${
+      className={`max-w-[490px] w-[90%] h-[555px] flex flex-col rounded-lg z-50 fixed p-3 bg-white top-1/2 left-1/2 transition-all translate-x-[-50%] translate-y-[-50%] scale-0 shadow-md   ${
         active && "translate-x-[-50%] translate-y-[-50%] scale-100"
       }`}
     >

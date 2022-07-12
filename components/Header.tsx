@@ -1,5 +1,3 @@
-import { AiOutlineMenu } from "react-icons/ai";
-import useDrawer from "../hooks/useDrawer";
 import useModal from "../hooks/useModal";
 import Button from "./Button";
 import Modal from "./Modal";
