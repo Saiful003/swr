@@ -1,7 +1,6 @@
 import { BsX } from "react-icons/bs";
 import Login from "./Login";
 import SignIn from "./SignIn";
-import { useState } from "react";
 import classNames from "classnames";
 import useModal from "../hooks/useModal";
 
@@ -28,7 +27,7 @@ function Modal({ active }: IProps) {
         <p>
           {isLoginPage ? " Don't have an account?" : "Already have an account?"}
           <a
-            className=" text-sky-500 font-bold cursor-pointer hover:underline"
+            className=" text-red-500 font-bold cursor-pointer hover:underline"
             onClick={switchPage}
           >
             {isLoginPage ? " Sign up" : " Log in"}

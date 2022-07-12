@@ -4,6 +4,8 @@ import Image from "next/image";
 import { BsFillHeartFill } from "react-icons/bs";
 import { AiFillMessage } from "react-icons/ai";
 import { RiShareForwardFill } from "react-icons/ri";
+import RoundedIcon from "../components/RoundedIcon";
+
 const Home: NextPage = () => {
   return (
     <>

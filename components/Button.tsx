@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { useTheme } from "../hooks/useTheme";
 
 interface IProps {
   children?: React.ReactNode;
@@ -21,6 +22,7 @@ function Button({
   outlined,
   loginLg,
 }: IProps) {
+  const { light } = useTheme();
   return (
     <a
       onClick={onClick}
@@ -31,6 +33,7 @@ function Button({
         {
           "font-bold items-center text-md text-gray-700 flex gap-2 hover:bg-neutral-100":
             icon,
+          "border-none bg-white": !light && icon,
         },
         {
           "border border-red-500 font-bold hover:bg-red-100 rounded-md text-red-500 py-2 px-6":

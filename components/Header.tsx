@@ -7,14 +7,24 @@ import { FiMoreVertical } from "react-icons/fi";
 import Container from "./Container";
 import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
+import { MdLightMode, MdNightlight } from "react-icons/md";
 import Divider from "./Divider";
+import { useTheme } from "../hooks/useTheme";
+import classNames from "classnames";
 
 function Header() {
   const { isOpenModal, openModal } = useModal();
+  const { light, switchThemeHandler } = useTheme();
 
   return (
     <>
-      <header className="border-b sticky top-0 bg-white">
+      <header
+        className={classNames(
+          "border-b sticky top-0 ",
+          { "bg-white": light },
+          { " bg-gray-800 border-none shadow-lg": !light }
+        )}
+      >
         <Container>
           <div className="h-[60px] flex items-center justify-between ">
             <div>
@@ -46,7 +56,28 @@ function Header() {
                 <Button fill onClick={openModal}>
                   Log in
                 </Button>
-                <FiMoreVertical size={20} cursor="pointer" />
+                <FiMoreVertical
+                  className={classNames({ " text-white": !light })}
+                  size={20}
+                  cursor="pointer"
+                />
+                {light ? (
+                  <MdLightMode
+                    onClick={switchThemeHandler}
+                    className={classNames("cursor-pointer", {
+                      " text-white": !light,
+                    })}
+                    size={23}
+                  />
+                ) : (
+                  <MdNightlight
+                    onClick={switchThemeHandler}
+                    className={classNames("cursor-pointer", {
+                      "text-white": !light,
+                    })}
+                    size={23}
+                  />
+                )}
               </ul>
             </div>
           </div>

@@ -4,6 +4,7 @@ interface MyAct {
   OPEN_DRAWER: string;
   CLOSE_DRAWER: string;
   SWITCHPAGE: string;
+  SWITCH_THEME: string;
 }
 
 export const ACTIONS: MyAct = {
@@ -12,4 +13,5 @@ export const ACTIONS: MyAct = {
   OPEN_DRAWER: "openDrawer",
   CLOSE_DRAWER: "closeDrawer",
   SWITCHPAGE: "switchpage",
+  SWITCH_THEME: "switchTheme",
 };
