@@ -9,9 +9,9 @@ interface IProps {
 
 function RoundedIcon({ icon, contentCounter = 0, prefix = "" }: IProps) {
   return (
-    <div className=" w-[50px] flex flex-col items-center gap-2 mb-2 last:mb-0">
+    <div className="w-[40px] flex flex-col items-center gap-2 mb-2 last:mb-0">
       <div
-        className={`w-[40px] aspect-square rounded-full bg-gray-100 flex items-center justify-center cursor-pointer transition-colors hover:bg-gray-200`}
+        className={`w-full aspect-square rounded-full bg-gray-100 flex items-center justify-center cursor-pointer transition-colors hover:bg-gray-200`}
       >
         {icon}
       </div>
