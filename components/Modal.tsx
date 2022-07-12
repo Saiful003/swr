@@ -2,6 +2,7 @@ import { BsX } from "react-icons/bs";
 import Login from "./Login";
 import SignIn from "./SignIn";
 import { useState } from "react";
+import classNames from "classnames";
 
 interface IProps {
   active: boolean;
@@ -15,9 +16,10 @@ function Modal({ active, closeModal }: IProps) {
 
   return (
     <div
-      className={`max-w-[490px] w-[90%] h-[555px] flex flex-col rounded-lg z-50 fixed p-3 bg-white top-1/2 left-1/2 transition-all translate-x-[-50%] translate-y-[-50%] scale-0 shadow-md   ${
-        active && "translate-x-[-50%] translate-y-[-50%] scale-100"
-      }`}
+      className={classNames(
+        "max-w-[490px] w-[90%] h-[555px] flex flex-col rounded-lg z-50 fixed p-3 bg-white top-1/2 left-1/2 transition-transform translate-x-[-50%] translate-y-[-50%] scale-0 shadow-md",
+        { "scale-100": active }
+      )}
     >
       <div className="flex justify-end">
         <div className=" rounded-full bg-gray-100 p-1">

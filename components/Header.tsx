@@ -52,7 +52,7 @@ function Header() {
           </div>
         </Container>
       </header>
-      {isOpenModal && <Modal closeModal={closeModal} active={isOpenModal} />}
+      {<Modal closeModal={closeModal} active={isOpenModal} />}
       <OverLay active={isOpenModal} />
     </>
   );
