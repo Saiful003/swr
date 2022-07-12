@@ -10,7 +10,7 @@ import { BsSearch } from "react-icons/bs";
 import Divider from "./Divider";
 
 function Header() {
-  const { isOpenModal, closeModal, openModal } = useModal();
+  const { isOpenModal, openModal } = useModal();
 
   return (
     <>
@@ -52,7 +52,7 @@ function Header() {
           </div>
         </Container>
       </header>
-      {<Modal closeModal={closeModal} active={isOpenModal} />}
+      {<Modal active={isOpenModal} />}
       <OverLay active={isOpenModal} />
     </>
   );

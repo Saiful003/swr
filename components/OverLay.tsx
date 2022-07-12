@@ -6,6 +6,7 @@ interface IProps {
 
 function OverLay({ active }: IProps) {
   const { closeModal } = useModal();
+
   return (
     <div
       onClick={closeModal}

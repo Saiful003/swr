@@ -2,6 +2,7 @@ import { ACTIONS } from "../actions/actions";
 
 const initialState = {
   isOpenModal: false,
+  isLoginPage: true,
 };
 
 interface Action {
@@ -16,6 +17,9 @@ function modalReducer(state = initialState, action: Action) {
     }
     case ACTIONS.CLOSE_MODAL: {
       return { ...state, isOpenModal: false };
+    }
+    case ACTIONS.SWITCHPAGE: {
+      return { ...state, isLoginPage: !state.isLoginPage };
     }
     default: {
       return state;

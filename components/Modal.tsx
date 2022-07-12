@@ -3,17 +3,14 @@ import Login from "./Login";
 import SignIn from "./SignIn";
 import { useState } from "react";
 import classNames from "classnames";
+import useModal from "../hooks/useModal";
 
 interface IProps {
   active: boolean;
-  closeModal: () => void;
 }
 
-function Modal({ active, closeModal }: IProps) {
-  const [isLoginPage, setIsLoginPage] = useState(true);
-
-  const switchPage = () => setIsLoginPage(!isLoginPage);
-
+function Modal({ active }: IProps) {
+  const { closeModal, isLoginPage, switchPage } = useModal();
   return (
     <div
       className={classNames(

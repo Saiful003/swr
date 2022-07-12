@@ -3,6 +3,7 @@ interface MyAct {
   CLOSE_MODAL: string;
   OPEN_DRAWER: string;
   CLOSE_DRAWER: string;
+  SWITCHPAGE: string;
 }
 
 export const ACTIONS: MyAct = {
@@ -10,4 +11,5 @@ export const ACTIONS: MyAct = {
   CLOSE_MODAL: "closeModal",
   OPEN_DRAWER: "openDrawer",
   CLOSE_DRAWER: "closeDrawer",
+  SWITCHPAGE: "switchpage",
 };
