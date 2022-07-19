@@ -1,15 +1,13 @@
-import { BsX } from "react-icons/bs";
-import Login from "./Login";
-import SignIn from "./SignIn";
 import classNames from "classnames";
 import useModal from "../hooks/useModal";
+import React from "react";
 
 interface IProps {
   active: boolean;
+  children: React.ReactNode;
 }
 
-function Modal({ active }: IProps) {
-  const { closeModal, isLoginPage, switchPage } = useModal();
+function Modal({ active, children }: IProps) {
   return (
     <div
       className={classNames(
@@ -17,23 +15,7 @@ function Modal({ active }: IProps) {
         { "scale-100": active }
       )}
     >
-      <div className="flex justify-end">
-        <div className=" rounded-full bg-gray-100 p-1">
-          <BsX onClick={closeModal} size={30} className="cursor-pointer" />
-        </div>
-      </div>
-      {isLoginPage ? <Login /> : <SignIn />}
-      <div className="text-center py-3 border-t">
-        <p>
-          {isLoginPage ? " Don't have an account?" : "Already have an account?"}
-          <a
-            className=" text-red-500 font-bold cursor-pointer hover:underline"
-            onClick={switchPage}
-          >
-            {isLoginPage ? " Sign up" : " Log in"}
-          </a>
-        </p>
-      </div>
+      {children}
     </div>
   );
 }

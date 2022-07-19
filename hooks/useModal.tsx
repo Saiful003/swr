@@ -3,11 +3,11 @@ import { ACTIONS } from "../actions/actions";
 function useModal() {
   const { modal } = useSelector((state) => state);
   const dispatch = useDispatch();
-  const { isOpenModal, isLoginPage } = modal;
+  const { isOpenModal, isLoginPage, currentModal } = modal;
 
   //open modal
-  const openModal = () => {
-    dispatch({ type: ACTIONS.OPEN_MODAL });
+  const openModal = (currentModal: string) => {
+    dispatch({ type: ACTIONS.OPEN_MODAL, payload: { currentModal } });
   };
 
   //close modal
@@ -25,6 +25,7 @@ function useModal() {
   return {
     isOpenModal,
     isLoginPage,
+    currentModal,
     openModal,
     closeModal,
     switchPage,

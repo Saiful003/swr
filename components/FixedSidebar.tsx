@@ -37,7 +37,12 @@ function FixedSidebar() {
           Log in to follow creators, like videos, and view comments.
         </p>
 
-        <Button outlined loginLg hiddenWhenSmall onClick={openModal}>
+        <Button
+          outlined
+          loginLg
+          hiddenWhenSmall
+          onClick={() => openModal("auth")}
+        >
           Log in
         </Button>
       </div>

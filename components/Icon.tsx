@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import { useTheme } from "../hooks/useTheme";
 
 interface IProps {
   icon: React.ReactNode;
@@ -9,13 +10,17 @@ interface IProps {
 }
 
 function Icon({ icon, text, active, last }: IProps) {
+  const { light } = useTheme();
   return (
     <div
       className={classNames(
-        "icon__container",
+        "icon__container ",
+        { "lg:lg:hover:bg-neutral-100": light },
+        { "lg:hover:bg-gray-700": !light },
         {
           "text-red-500": active,
         },
+        { "text-white": !light && last },
         { "lg:mb-2": last }
       )}
     >

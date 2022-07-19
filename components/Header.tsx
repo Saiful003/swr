@@ -11,9 +11,11 @@ import { MdLightMode, MdNightlight } from "react-icons/md";
 import Divider from "./Divider";
 import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
+import AuthModal from "./AuthModal";
 
 function Header() {
-  const { isOpenModal, openModal } = useModal();
+  const { isOpenModal, openModal, currentModal } = useModal();
+  const { currentModal: modalStatus } = currentModal;
   const { light, switchThemeHandler } = useTheme();
 
   return (
@@ -50,10 +52,13 @@ function Header() {
             </div>
             <div className="shrink-0">
               <ul className="flex items-center gap-5 ">
-                <Button icon={<AiOutlinePlus />} onClick={openModal}>
+                <Button
+                  icon={<AiOutlinePlus />}
+                  onClick={() => openModal("auth")}
+                >
                   Upload
                 </Button>
-                <Button fill onClick={openModal}>
+                <Button fill onClick={() => openModal("auth")}>
                   Log in
                 </Button>
                 <FiMoreVertical
@@ -83,7 +88,11 @@ function Header() {
           </div>
         </Container>
       </header>
-      {<Modal active={isOpenModal} />}
+      {
+        <Modal active={isOpenModal}>
+          {modalStatus === "auth" && <AuthModal />}
+        </Modal>
+      }
       <OverLay active={isOpenModal} />
     </>
   );
