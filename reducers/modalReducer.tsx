@@ -3,7 +3,7 @@ import { ACTIONS } from "../actions/actions";
 const initialState = {
   isOpenModal: false,
   isLoginPage: true,
-  currentModal: null,
+  currentModal: "",
 };
 
 interface Action {

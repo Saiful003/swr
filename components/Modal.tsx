@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import useModal from "../hooks/useModal";
 import React from "react";
 
 interface IProps {

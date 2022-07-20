@@ -15,8 +15,8 @@ import AuthModal from "./AuthModal";
 
 function Header() {
   const { isOpenModal, openModal, currentModal } = useModal();
-  const { currentModal: modalStatus } = currentModal;
   const { light, switchThemeHandler } = useTheme();
+  console.log(currentModal);
 
   return (
     <>
@@ -90,7 +90,7 @@ function Header() {
       </header>
       {
         <Modal active={isOpenModal}>
-          {modalStatus === "auth" && <AuthModal />}
+          {currentModal.currentModal === "auth" && <AuthModal />}
         </Modal>
       }
       <OverLay active={isOpenModal} />
