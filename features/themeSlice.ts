@@ -14,10 +14,4 @@ const themeSlice = createSlice({
   },
 });
 export default themeSlice.reducer;
-const { switchTheme } = themeSlice.actions;
-
-export const useTheme = () => {
-  return {
-    switchTheme,
-  } as const;
-};
+export const { switchTheme } = themeSlice.actions;

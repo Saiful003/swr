@@ -10,20 +10,12 @@ import { MdLightMode, MdNightlight } from "react-icons/md";
 import Divider from "./Divider";
 import classNames from "classnames";
 import AuthModal from "./AuthModal";
-import { useTheme } from "../features/themeSlice";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../hooks/redux-hooks/tsVersionHooks";
-import { useModal } from "../features/modalSlice";
+import { useModal } from "../hooks/useModal";
+import { useTheme } from "../hooks/useTheme";
 
 function Header() {
-  const { switchTheme } = useTheme();
-  const { openModal } = useModal();
-  const { siteTheme, myModal } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
-  const { light } = siteTheme;
-  const { isOpenModal, currentModal } = myModal;
+  const { handleOpenModal, isOpenModal, currentModal } = useModal();
+  const { light, handleSwitchTheme } = useTheme();
 
   return (
     <>
@@ -61,11 +53,11 @@ function Header() {
               <ul className="flex items-center gap-5 ">
                 <Button
                   icon={<AiOutlinePlus />}
-                  onClick={() => dispatch(openModal("auth"))}
+                  onClick={() => handleOpenModal("auth")}
                 >
                   Upload
                 </Button>
-                <Button fill onClick={() => dispatch(openModal("auth"))}>
+                <Button fill onClick={() => handleOpenModal("auth")}>
                   Log in
                 </Button>
                 <FiMoreVertical
@@ -75,7 +67,7 @@ function Header() {
                 />
                 {light ? (
                   <MdLightMode
-                    onClick={() => dispatch(switchTheme())}
+                    onClick={handleSwitchTheme}
                     className={classNames("cursor-pointer", {
                       " text-white": !light,
                     })}
@@ -83,7 +75,7 @@ function Header() {
                   />
                 ) : (
                   <MdNightlight
-                    onClick={() => dispatch(switchTheme())}
+                    onClick={handleSwitchTheme}
                     className={classNames("cursor-pointer", {
                       "text-white": !light,
                     })}

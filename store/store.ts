@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import drawerSlice from "../features/drawerSlice";
 import modalSlice from "../features/modalSlice";
 import themeSlice from "../features/themeSlice";
 
 const store = configureStore({
   reducer: {
-    myDrawer: drawerSlice,
     siteTheme: themeSlice,
     myModal: modalSlice,
   },

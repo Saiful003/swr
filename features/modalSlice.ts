@@ -22,7 +22,4 @@ const modalSlice = createSlice({
   },
 });
 export default modalSlice.reducer;
-const { openModal, closeModal, switchPage } = modalSlice.actions;
-export const useModal = () => {
-  return { openModal, closeModal, switchPage } as const;
-};
+export const { openModal, closeModal, switchPage } = modalSlice.actions;

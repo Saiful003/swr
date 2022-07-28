@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { useAppSelector } from "../hooks/redux-hooks/tsVersionHooks";
+import { useTheme } from "../hooks/useTheme";
 
 interface IProps {
   icon: React.ReactNode;
@@ -10,8 +10,8 @@ interface IProps {
 }
 
 function Icon({ icon, text, active, last }: IProps) {
-  const { siteTheme } = useAppSelector((state) => state);
-  const { light } = siteTheme;
+  const { light } = useTheme();
+
   return (
     <div
       className={classNames(

@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { useAppSelector } from "../hooks/redux-hooks/tsVersionHooks";
+import { useTheme } from "../hooks/useTheme";
 
 interface IProps {
   hiddenInMobile?: boolean;
@@ -7,8 +7,7 @@ interface IProps {
 }
 
 function Divider({ hiddenInMobile, verticalBar }: IProps) {
-  const { siteTheme } = useAppSelector((state) => state);
-  const { light } = siteTheme;
+  const { light } = useTheme();
   return (
     <hr
       className={classNames(

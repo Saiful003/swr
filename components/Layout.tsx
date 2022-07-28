@@ -4,15 +4,15 @@ import OverLay from "./OverLay";
 import FixedSidebar from "./FixedSidebar";
 import Container from "./Container";
 import classNames from "classnames";
-import { useAppSelector } from "../hooks/redux-hooks/tsVersionHooks";
+import { useTheme } from "../hooks/useTheme";
 
 type props = {
   children: React.ReactNode;
 };
 
 function Layout({ children }: props) {
-  const { siteTheme } = useAppSelector((state) => state);
-  const { light } = siteTheme;
+  const { light } = useTheme();
+
   return (
     <div className={classNames(" bg-white", { "bg-gray-600": !light })}>
       <Header />

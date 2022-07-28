@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { useTheme } from "../features/themeSlice";
-import { useAppSelector } from "../hooks/redux-hooks/tsVersionHooks";
+import { useTheme } from "../hooks/useTheme";
 
 interface IProps {
   children?: React.ReactNode;
@@ -23,8 +22,8 @@ function Button({
   outlined,
   loginLg,
 }: IProps) {
-  const { siteTheme } = useAppSelector((state) => state);
-  const { light } = siteTheme;
+  const { light } = useTheme();
+
   return (
     <a
       onClick={onClick}

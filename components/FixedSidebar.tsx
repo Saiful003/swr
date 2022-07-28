@@ -6,17 +6,12 @@ import Divider from "./Divider";
 import HasTag from "./HasTag";
 import FixedSideBarFooter from "./FixedSideBarFooter";
 import classNames from "classnames";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../hooks/redux-hooks/tsVersionHooks";
-import { useModal } from "../features/modalSlice";
+import { useTheme } from "../hooks/useTheme";
+import { useModal } from "../hooks/useModal";
 
 function FixedSidebar() {
-  const { openModal } = useModal();
-  const { siteTheme } = useAppSelector((state) => state);
-  const dispatch = useAppDispatch();
-  const { light } = siteTheme;
+  const { handleOpenModal } = useModal();
+  const { light } = useTheme();
 
   return (
     <div
@@ -46,7 +41,7 @@ function FixedSidebar() {
           outlined
           loginLg
           hiddenWhenSmall
-          onClick={() => dispatch(openModal("auth"))}
+          onClick={() => handleOpenModal("auth")}
         >
           Log in
         </Button>
