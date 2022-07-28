@@ -1,4 +1,3 @@
-import useModal from "../hooks/useModal";
 import Button from "./Button";
 import Modal from "./Modal";
 import OverLay from "./OverLay";
@@ -9,14 +8,22 @@ import Link from "next/link";
 import { BsSearch } from "react-icons/bs";
 import { MdLightMode, MdNightlight } from "react-icons/md";
 import Divider from "./Divider";
-import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
 import AuthModal from "./AuthModal";
+import { useTheme } from "../features/themeSlice";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../hooks/redux-hooks/tsVersionHooks";
+import { useModal } from "../features/modalSlice";
 
 function Header() {
-  const { isOpenModal, openModal, currentModal } = useModal();
-  const { light, switchThemeHandler } = useTheme();
-  console.log(currentModal);
+  const { switchTheme } = useTheme();
+  const { openModal } = useModal();
+  const { siteTheme, myModal } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  const { light } = siteTheme;
+  const { isOpenModal, currentModal } = myModal;
 
   return (
     <>
@@ -54,11 +61,11 @@ function Header() {
               <ul className="flex items-center gap-5 ">
                 <Button
                   icon={<AiOutlinePlus />}
-                  onClick={() => openModal("auth")}
+                  onClick={() => dispatch(openModal("auth"))}
                 >
                   Upload
                 </Button>
-                <Button fill onClick={() => openModal("auth")}>
+                <Button fill onClick={() => dispatch(openModal("auth"))}>
                   Log in
                 </Button>
                 <FiMoreVertical
@@ -68,7 +75,7 @@ function Header() {
                 />
                 {light ? (
                   <MdLightMode
-                    onClick={switchThemeHandler}
+                    onClick={() => dispatch(switchTheme())}
                     className={classNames("cursor-pointer", {
                       " text-white": !light,
                     })}
@@ -76,7 +83,7 @@ function Header() {
                   />
                 ) : (
                   <MdNightlight
-                    onClick={switchThemeHandler}
+                    onClick={() => dispatch(switchTheme())}
                     className={classNames("cursor-pointer", {
                       "text-white": !light,
                     })}
@@ -90,7 +97,7 @@ function Header() {
       </header>
       {
         <Modal active={isOpenModal}>
-          {currentModal.currentModal === "auth" && <AuthModal />}
+          {currentModal === "auth" && <AuthModal />}
         </Modal>
       }
       <OverLay active={isOpenModal} />

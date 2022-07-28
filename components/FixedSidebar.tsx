@@ -1,17 +1,22 @@
 import Icon from "./Icon";
 import { AiFillHome } from "react-icons/ai";
 import { TbUsers } from "react-icons/tb";
-import useModal from "../hooks/useModal";
 import Button from "./Button";
 import Divider from "./Divider";
 import HasTag from "./HasTag";
 import FixedSideBarFooter from "./FixedSideBarFooter";
-import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
+import {
+  useAppDispatch,
+  useAppSelector,
+} from "../hooks/redux-hooks/tsVersionHooks";
+import { useModal } from "../features/modalSlice";
 
 function FixedSidebar() {
   const { openModal } = useModal();
-  const { light } = useTheme();
+  const { siteTheme } = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
+  const { light } = siteTheme;
 
   return (
     <div
@@ -41,7 +46,7 @@ function FixedSidebar() {
           outlined
           loginLg
           hiddenWhenSmall
-          onClick={() => openModal("auth")}
+          onClick={() => dispatch(openModal("auth"))}
         >
           Log in
         </Button>
