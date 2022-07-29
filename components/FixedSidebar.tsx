@@ -16,7 +16,7 @@ function FixedSidebar() {
   return (
     <div
       className={classNames(
-        "w-[80px] border-r h-[calc(100vh-61px)] shrink-0 sticky top-[61px] -ml-5 pt-4 lg:w-[350px] lg:ml-0 lg:border-none",
+        "w-[80px] border-r h-[calc(100vh-161px)] shrink-0 sticky top-[61px] -ml-5 pt-4 lg:w-[350px] lg:ml-0 lg:border-none",
         { "border-gray-500": !light }
       )}
     >

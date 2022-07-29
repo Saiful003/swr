@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 
       <div className={classes.d__grid}>
         <div className={classes.box1}>
-          <h2 className="text-2xl border-b py-3 font-bold">
+          <h2 className="text-2xl border-b pb-3 font-bold">
             The Power of <span className="text-red-500">Next.js</span>
           </h2>
           <span className="text-sm font-semibold mb-5">
@@ -27,22 +27,23 @@ const Home: NextPage = () => {
             sint optio quasi similique veritatis soluta fugiat ipsum, ipsam
             quod, adipisci quaerat totam quis. Tempore dignissimos itaque
             accusamus voluptates totam temporibus porro adipisci, minima
-            corrupti eos placeat quis voluptatibus consequatur molestias ducimus
-            cumque fugit laboriosam? Nam sunt accusantium quaerat unde nostrum
-            nihil explicabo mollitia ducimus, accusamus voluptates labore
-            recusandae! Assumenda repellendus suscipit nihil ducimus nesciunt
-            quo similique ex impedit cum ipsam, odit magnam provident, error
-            alias laboriosam mollitia expedita beatae tempore architecto
-            laudantium. Repellendus fuga, natus, assumenda minima voluptate a
-            tempore culpa ut provident esse nihil ipsa tenetur ex minus delectus
-            vel praesentium aliquid modi perferendis excepturi exercitationem
-            sequi. Sed quis nesciunt voluptate et, modi cum! Architecto, enim.
-            Nobis, deleniti quaerat quia excepturi tempora earum, molestiae,
-            voluptatibus totam repudiandae quae
+            corrupti eos placeat quis voluptatibus Lorem ipsum dolor, sit amet
+            consectetur adipisicing elit. Esse suscipit magnam nostrum
+            recusandae quisquam consequuntur vitae voluptatum quas labore
+            necessitatibus, aspernatur eaque perspiciatis rem numquam iusto
+            facilis incidunt accusamus ab porro accusantium distinctio voluptate
+            id tempora! Sit ut facilis saepe, voluptatem doloremque deleniti,
+            debitis itaque quaerat laborum modi fugit. Aperiam temporibus in
+            iusto sit sapiente illum ex, aspernatur consequatur quos
+            necessitatibus inventore nihil quis. Nostrum et ipsa eius, quaerat
+            veritatis nemo illo molestias, nobis laborum, ex doloribus magnam
+            totam corporis dolores neque nesciunt deserunt rerum voluptate. Unde
+            sapiente atque quam eveniet rerum sunt voluptatibus veritatis earum!
+            Impedit aspernatur inventore voluptas.
           </p>
         </div>
         <div className={classes.box2}>
-          <h2 className="text-2xl border-b py-3 font-bold">
+          <h2 className="text-2xl border-b pb-3 font-bold">
             Love <span className="text-red-500">React.js</span>
           </h2>
           <span className="text-sm font-semibold mb-5">

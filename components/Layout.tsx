@@ -1,14 +1,11 @@
 import React from "react";
 import Header from "./Header";
-import OverLay from "./OverLay";
 import FixedSidebar from "./FixedSidebar";
 import Container from "./Container";
 import classNames from "classnames";
 import { useTheme } from "../hooks/useTheme";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import CategoryList from "./CategoryList";
 import CategoriesNav from "./CategoriesNav";
+import Footer from "./Footer";
 
 type props = {
   children: React.ReactNode;
@@ -16,7 +13,6 @@ type props = {
 
 function Layout({ children }: props) {
   const { light } = useTheme();
-  const { pathname } = useRouter();
 
   return (
     <div className={classNames(" bg-white", { "bg-gray-600": !light })}>
@@ -30,7 +26,7 @@ function Layout({ children }: props) {
           </main>
         </div>
       </Container>
-      <OverLay />
+      <Footer />
     </div>
   );
 }

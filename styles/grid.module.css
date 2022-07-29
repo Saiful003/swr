@@ -29,7 +29,7 @@
 
 .d__grid > * {
   border: 1px solid #ddd;
-  padding: 0 1.25em;
+  padding: 1.25em;
 }
 
 @media (min-width: 768px) {
