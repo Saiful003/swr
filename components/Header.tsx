@@ -31,7 +31,7 @@ function Header() {
             <div>
               <Link href="/">
                 <a>
-                  <h2 className="text-3xl font-medium text-red-500">MyTok</h2>
+                  <h2 className="text-3xl font-medium text-red-500">MyBlog</h2>
                 </a>
               </Link>
             </div>
