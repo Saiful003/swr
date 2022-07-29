@@ -60,11 +60,13 @@ function Header() {
                 <Button fill onClick={() => handleOpenModal("auth")}>
                   Log in
                 </Button>
+
                 <FiMoreVertical
-                  className={classNames({ " text-white": !light })}
+                  className={classNames({ "text-white": !light })}
                   size={20}
                   cursor="pointer"
                 />
+
                 {light ? (
                   <MdLightMode
                     onClick={handleSwitchTheme}

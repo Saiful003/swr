@@ -5,6 +5,10 @@ import FixedSidebar from "./FixedSidebar";
 import Container from "./Container";
 import classNames from "classnames";
 import { useTheme } from "../hooks/useTheme";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import CategoryList from "./CategoryList";
+import CategoriesNav from "./CategoriesNav";
 
 type props = {
   children: React.ReactNode;
@@ -12,6 +16,7 @@ type props = {
 
 function Layout({ children }: props) {
   const { light } = useTheme();
+  const { pathname } = useRouter();
 
   return (
     <div className={classNames(" bg-white", { "bg-gray-600": !light })}>
@@ -20,7 +25,8 @@ function Layout({ children }: props) {
         <div className="flex gap-[2.5em]  ">
           <FixedSidebar />
           <main className="flex-grow">
-            <div className="mt-4">{children}</div>
+            <CategoriesNav />
+            {children}
           </main>
         </div>
       </Container>
