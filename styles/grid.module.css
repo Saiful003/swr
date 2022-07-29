@@ -1,6 +1,5 @@
 .d__grid {
   display: grid;
-  min-height: 300px;
   gap: 1em;
   grid-template-columns: 1fr;
   grid-template-areas:
