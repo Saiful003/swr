@@ -1,3 +1,3 @@
-export interface IInterface {
-  name: string;
+export interface {
+  name : string
 }

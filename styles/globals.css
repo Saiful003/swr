@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer {
+  .icon__container {
+    @apply flex justify-center items-center cursor-pointer lg:gap-2 lg:py-3 lg:px-5 lg:-ml-5 rounded-md;
+  }
+  .sidebar__icon__wrapper {
+    @apply p-3 lg:p-0 rounded-md aspect-square transition-colors hover:bg-neutral-100 mb-2 lg:mb-0;
+  }
+}
+
+body {
+  overflow-x: hidden;
+}
