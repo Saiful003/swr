@@ -21,7 +21,7 @@ function Header() {
     <>
       <header
         className={classNames(
-          "border-b sticky top-0 ",
+          "border-b z-20 sticky top-0 ",
           { "bg-white": light },
           { " bg-gray-800 border-none shadow-lg": !light }
         )}

@@ -1,8 +1,10 @@
-import classNames from "classnames";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import classes from "../styles/grid.module.css";
+import img from "../public/pie.png";
+import img2 from "../public/Screenshot_82.png";
+import img3 from "../public/Screenshot_83.png";
 
 const Home: NextPage = () => {
   return (
@@ -14,55 +16,13 @@ const Home: NextPage = () => {
       </Head>
 
       <div className={classes.d__grid}>
-        <div className={classes.box1}>
-          <h2 className="text-2xl border-b pb-3 font-bold">
-            The Power of <span className="text-red-500">Next.js</span>
-          </h2>
-          <span className="text-sm font-semibold mb-5">
-            Author : Md Saiful Islam Shanto
-          </span>
-          <p className="text-gray-500 text-md mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui
-            eligendi rerum repellat iste fuga blanditiis cupiditate, laborum
-            sint optio quasi similique veritatis soluta fugiat ipsum, ipsam
-            quod, adipisci quaerat totam quis. Tempore dignissimos itaque
-            accusamus voluptates totam temporibus porro adipisci, minima
-            corrupti eos placeat quis voluptatibus Lorem ipsum dolor, sit amet
-            consectetur adipisicing elit. Esse suscipit magnam nostrum
-            recusandae quisquam consequuntur vitae voluptatum quas labore
-            necessitatibus, aspernatur eaque perspiciatis rem numquam iusto
-            facilis incidunt accusamus ab porro accusantium distinctio voluptate
-            id tempora! Sit ut facilis saepe, voluptatem doloremque deleniti,
-            debitis itaque quaerat laborum modi fugit. Aperiam temporibus in
-            iusto sit sapiente illum ex, aspernatur consequatur quos
-            necessitatibus inventore nihil quis. Nostrum et ipsa eius, quaerat
-            veritatis nemo illo molestias, nobis laborum, ex doloribus magnam
-            totam corporis dolores neque nesciunt deserunt rerum voluptate. Unde
-            sapiente atque quam eveniet rerum sunt voluptatibus veritatis earum!
-            Impedit aspernatur inventore voluptas.
-          </p>
-        </div>
+        <div className={classes.box1}>hello Bangladesh</div>
         <div className={classes.box2}>
-          <h2 className="text-2xl border-b pb-3 font-bold">
-            Love <span className="text-red-500">React.js</span>
-          </h2>
-          <span className="text-sm font-semibold mb-5">
-            Author : Md Saiful Islam Shanto
-          </span>
-          <p className="text-gray-500 text-md mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui
-            eligendi rerum repellat iste fuga blanditiis cupiditate, laborum
-            sint optio quasi similique veritatis soluta fugiat ipsum, ipsam
-            quod, adipisci quaerat totam quis
-          </p>
+          <Image src={img} layout="responsive" />
+          <div></div>
         </div>
         <div className={classes.box3}>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reiciendis
-            qui quis voluptatem, doloribus reprehenderit eum soluta! Non enim
-            quaerat culpa commodi sunt, molestiae nobis saepe id ducimus
-            ratione, doloribus dicta maxime
-          </p>
+          <Image src={img2} layout="responsive" />
         </div>
         <div className={classes.box4}>
           <p>
@@ -73,9 +33,7 @@ const Home: NextPage = () => {
           </p>
         </div>
         <div className={classes.box5}>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quod
-          sapiente quo quae, corporis reiciendis ullam veritatis eligendi
-          consequatur dolor minus nulla deleniti ducimus
+          <Image src={img3} layout="responsive" />
         </div>
       </div>
     </>

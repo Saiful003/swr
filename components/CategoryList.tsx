@@ -22,7 +22,6 @@ function CategoryList({ slug }: IProps) {
     forRecent?: boolean;
     forOthers?: boolean;
   }) => {
-    console.log(forRecent, forOthers);
     if (forRecent) {
       return classNames(
         "py-4 font-bold",
