@@ -1,12 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import modalSlice from "../features/modalSlice";
-import themeSlice from "../features/themeSlice";
 
 const store = configureStore({
-  reducer: {
-    siteTheme: themeSlice,
-    myModal: modalSlice,
-  },
+  reducer: {},
 });
 export default store;
 // Infer the `RootState` and `AppDispatch` types from the store itself
