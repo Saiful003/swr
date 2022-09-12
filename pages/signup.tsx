@@ -6,7 +6,7 @@ interface IInput {
   email: string;
 }
 
-function signup() {
+function Signup() {
   const { register, handleSubmit, formState } = useForm<IInput>();
   const { errors } = formState;
   const { email } = errors;
@@ -44,4 +44,4 @@ function signup() {
   );
 }
 
-export default signup;
+export default Signup;
