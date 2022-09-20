@@ -140,6 +140,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     props: {
       friend,
     },
+    revalidate: 10,
   };
 };
 
