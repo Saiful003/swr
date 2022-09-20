@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { IFriend } from "../types";
 import supabase from "../config/supabase";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Card from "../components/Card";
 import { useState } from "react";
 import { BiPlus } from "react-icons/bi";
@@ -71,7 +71,7 @@ const Home = ({ friends }: IProps) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const { data: friends } = await supabase
     .from("friends")
     .select("*")
@@ -79,7 +79,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: { friends }, // will be passed to the page component as props
-    revalidate: 60,
   };
 };
 
