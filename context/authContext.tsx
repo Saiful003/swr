@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import supabase from "../config/supabase";
+import React, { useContext, useState } from "react";
+import { IChildren } from "../types";
 
 interface AuthContextInterface {
-  signUp: (emali: string, password: string, phone: string) => void;
+  user: null | string;
 }
 
 const AuthContext = React.createContext<AuthContextInterface | null>(null);
@@ -10,24 +10,9 @@ const AuthContext = React.createContext<AuthContextInterface | null>(null);
 // custom hook to access context data
 export const useAuth = () => useContext(AuthContext);
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  //signUp
-  const signUp = async (email: string, password: string, phone: string) => {
-    const { session, error, user } = await supabase.auth.signUp({
-      email,
-      password,
-      phone,
-    });
-    console.log(session, error, user);
-  };
+export function AuthProvider({ children }: IChildren) {
+  const [user, setUser] = useState("name");
 
-  const value: AuthContextInterface = {
-    signUp,
-  };
-  //signIn
-  const signIn = () => {};
-  //signOut
-  const signOut = () => {};
-
+  const value = { user };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

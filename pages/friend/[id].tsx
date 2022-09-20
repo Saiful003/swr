@@ -1,4 +1,4 @@
-import { GetServerSideProps, GetStaticProps } from "next";
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -19,7 +19,6 @@ interface IProps {
 }
 
 function FriendDetail({ friend }: IProps) {
-  console.log(friend);
   const { register, handleSubmit, formState } = useForm<IFriend>({
     defaultValues: {
       name: friend.name,
@@ -35,7 +34,7 @@ function FriendDetail({ friend }: IProps) {
   // onSubmit function
   const onSubmit: SubmitHandler<IFriend> = async (data) => {
     const { data: updatedFriend } = await supabase
-      .from("Friends")
+      .from("friends")
       .update(data)
       .match({ id: friend.id });
 
@@ -113,16 +112,33 @@ function FriendDetail({ friend }: IProps) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
-  const { data } = await supabase
-    .from("Friends")
+// run build time
+export const getStaticPaths = async () => {
+  const { data } = await supabase.from("friends").select("*");
+
+  const paths = data?.map((friend) => {
+    return {
+      params: {
+        id: friend.id.toString(),
+      },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { data: friend } = await supabase
+    .from("friends")
     .select("*")
     .eq("id", params?.id)
     .single();
 
   return {
     props: {
-      friend: data,
+      friend,
     },
   };
 };

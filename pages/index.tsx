@@ -3,12 +3,10 @@ import { IFriend } from "../types";
 import supabase from "../config/supabase";
 import { GetServerSideProps } from "next";
 import Card from "../components/Card";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { useRouter } from "next/router";
 import Container from "../components/Container";
-import { useLimit } from "../hooks/useLimit";
-import classNames from "classnames";
 
 interface IProps {
   friends: IFriend[];
@@ -17,14 +15,12 @@ interface IProps {
 const Home = ({ friends }: IProps) => {
   const [myFriends, setMyFriends] = useState<IFriend[]>(friends);
   const router = useRouter();
-
+  // delete friend
   const deleteFriend = async (id: number) => {
-    // delete frined from supabase database
-    const { error } = await supabase.from("Friends").delete().match({ id });
-    // update our local state
-    const remainFriends = myFriends.filter((friend) => friend.id !== id);
+    const { error } = await supabase.from("friends").delete().match({ id });
+    const remainFriend = myFriends.filter((friend) => friend.id !== id);
     if (!error) {
-      setMyFriends(remainFriends);
+      setMyFriends(remainFriend);
     }
   };
 
@@ -49,10 +45,21 @@ const Home = ({ friends }: IProps) => {
                 deleteFriend={deleteFriend}
               />
             ))}
-            <div className="border border-emerald-200 flex justify-center items-center py-3">
+            <div
+              className={`border border-emerald-200 p-3  ${
+                myFriends.length && "flex items-center justify-center"
+              } `}
+            >
+              {!myFriends.length && (
+                <div className="text-center">
+                  <h2 className="text-xl font-medium mb-4">
+                    You have no friend list yet now! Please Create new friend.
+                  </h2>
+                </div>
+              )}
               <div
                 onClick={() => router.push("/create")}
-                className={`rounded-full p-2 cursor-pointer bg-emerald-400 hover:bg-emerald-500 shadow-lg`}
+                className="w-12 aspect-square rounded-full flex items-center justify-center mx-auto cursor-pointer bg-emerald-400 hover:bg-emerald-500 shadow-lg"
               >
                 <BiPlus className="text-4xl text-white" />
               </div>
@@ -66,7 +73,7 @@ const Home = ({ friends }: IProps) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const { data: friends } = await supabase
-    .from("Friends")
+    .from("friends")
     .select("*")
     .order("created_at", { ascending: false });
 

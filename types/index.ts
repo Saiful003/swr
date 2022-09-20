@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IUser {
   created_at: string;
   id: number;
@@ -11,4 +13,8 @@ export interface IFriend {
   name: string;
   age: number;
   profession: string;
+}
+
+export interface IChildren {
+  children: React.ReactNode;
 }

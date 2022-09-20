@@ -1,9 +1,7 @@
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import IconButton from "./IconButton";
-import img from "../public/Screenshot_6.png";
 
 interface IProps {
   id: number;
@@ -25,11 +23,7 @@ function Card({
   const router = useRouter();
 
   return (
-    <div className="shadow-md">
-      {/* <div>
-        <Image layout="responsive" src={img} alt="image" />
-      </div> */}
-
+    <div className="border-2 rounded border-emerald-200">
       <div className="p-2">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-medium mb-2 pb-2 border-b border-b-emerald-300">

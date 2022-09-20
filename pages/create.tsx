@@ -4,7 +4,6 @@ import supabase from "../config/supabase";
 import { useRouter } from "next/router";
 import Form from "../components/Form";
 import { IFriend } from "../types";
-import classNames from "classnames";
 
 function CreateNewFriend() {
   const { register, handleSubmit, formState } = useForm<IFriend>();
@@ -14,7 +13,10 @@ function CreateNewFriend() {
 
   // onSubmit function
   const onSubmit: SubmitHandler<IFriend> = async (data) => {
-    const { data: friend } = await supabase.from("Friends").insert([data]);
+    const { data: friend, error } = await supabase
+      .from("friends")
+      .insert([data]);
+    console.log(error);
     if (friend) {
       router.push("/");
     }
