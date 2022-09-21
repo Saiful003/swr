@@ -32,7 +32,6 @@ export function AuthProvider({ children }: IChildren) {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log(event);
       if (event === "SIGNED_IN") {
         setUser({
           email: session?.user?.email!,
