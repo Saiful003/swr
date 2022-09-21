@@ -74,7 +74,9 @@ function Login() {
           <p>
             Don't have an account ?
             <Link href="/signup">
-              <a className="font-medium text-emerald-600"> Sign Up </a>
+              <a className="font-medium text-emerald-600">
+                &apos Sign Up &apos
+              </a>
             </Link>
           </p>
         </form>
