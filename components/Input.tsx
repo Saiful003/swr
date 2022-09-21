@@ -14,6 +14,16 @@ const Input = forwardRef<HTMLInputElement, IProps>(
   ({ label, name, type, placeholder, isError, errorMessage, ...rest }, ref) => {
     const [passwordType, setPasswordType] = useState(true);
 
+    const handleTypeSelection = (receiveType: string) => {
+      if (receiveType === "password") {
+        if (passwordType) {
+          return "password";
+        }
+        return "text";
+      }
+      return receiveType;
+    };
+
     return (
       <div>
         <label className="block mb-1 text-gray-500" htmlFor={name}>
@@ -23,7 +33,7 @@ const Input = forwardRef<HTMLInputElement, IProps>(
           <input
             className="border w-full focus:outline-none p-2"
             placeholder={placeholder}
-            type={passwordType && type === "password" ? "password" : "text"}
+            type={handleTypeSelection(type)}
             id={name}
             name={name}
             {...rest}
