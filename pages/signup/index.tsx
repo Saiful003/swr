@@ -11,18 +11,29 @@ import { useState } from "react";
 interface IInput {
   email: string;
   password: string;
+  confirm_password: string;
 }
 
 function SignUp() {
   const { register, handleSubmit, formState } = useForm<IInput>();
   const { errors } = formState;
-  const { email, password } = errors;
+  const { email, password, confirm_password } = errors;
   const router = useRouter();
   const [signUpError, setSignUpError] = useState<string | null>(null);
 
   // onSubmit function
-  const onSubmit: SubmitHandler<IInput> = async ({ email, password }) => {
+  const onSubmit: SubmitHandler<IInput> = async ({
+    email,
+    password,
+    confirm_password,
+  }) => {
     // actual sign up process goes to here
+
+    if (password !== confirm_password) {
+      setSignUpError("Password do not match");
+      return;
+    }
+
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -40,10 +51,10 @@ function SignUp() {
   return (
     <div className="h-[calc(100vh-81px)]  flex items-center justify-center">
       <Form>
-        {signUpError && <Alert danger errorMessage={signUpError!} />}
         <h2 className="text-center font-medium text-2xl mt-2 mb-4">
           Sign Up Please
         </h2>
+        {signUpError && <Alert danger errorMessage={signUpError!} />}
 
         <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -64,6 +75,16 @@ function SignUp() {
             label="Password"
             {...register("password", {
               required: "This password field is required.",
+            })}
+          />
+          <Input
+            isError={confirm_password?.type === "required"}
+            errorMessage={confirm_password?.message!}
+            type="password"
+            placeholder="Enter Your Confirm Password"
+            label="Confirm Password"
+            {...register("confirm_password", {
+              required: "This confirm password field is required.",
             })}
           />
 
