@@ -15,7 +15,7 @@ function Header() {
               Friends Management System
             </h2>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center flex-wrap gap-4">
             <Link href={"/create"}>
               <a className="px-4 py-2 rounded-sm font-medium bg-emerald-500 hover:bg-emerald-600 text-white">
                 Create a new friend
