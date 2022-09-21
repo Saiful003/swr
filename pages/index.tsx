@@ -49,6 +49,7 @@ const Home = () => {
       setMyFriends(remainFriend);
     }
   };
+
   if (!user) {
     return null;
   }

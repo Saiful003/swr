@@ -1,4 +1,5 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 interface IProps {
   label: string;
@@ -11,20 +12,32 @@ interface IProps {
 
 const Input = forwardRef<HTMLInputElement, IProps>(
   ({ label, name, type, placeholder, isError, errorMessage, ...rest }, ref) => {
+    const [passwordType, setPasswordType] = useState(true);
+
     return (
       <div>
         <label className="block mb-1 text-gray-500" htmlFor={name}>
           {label} :
         </label>
-        <input
-          className="border w-full focus:outline-none p-2"
-          placeholder={placeholder}
-          type={type}
-          id={name}
-          name={name}
-          {...rest}
-          ref={ref}
-        />
+        <div className="relative">
+          <input
+            className="border w-full focus:outline-none p-2"
+            placeholder={placeholder}
+            type={passwordType && type === "password" ? "password" : "text"}
+            id={name}
+            name={name}
+            {...rest}
+            ref={ref}
+          />
+          {type === "password" && (
+            <div
+              onClick={() => setPasswordType(!passwordType)}
+              className="absolute text-2xl right-2 top-0 bottom-0 flex items-center cursor-pointer"
+            >
+              {passwordType ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+            </div>
+          )}
+        </div>
         {isError && (
           <span className="text-red-500 text-sm">{errorMessage}</span>
         )}
@@ -32,5 +45,5 @@ const Input = forwardRef<HTMLInputElement, IProps>(
     );
   }
 );
-Input.displayName = "CustomInputComponent";
+Input.displayName = "CustomComponent";
 export default Input;
