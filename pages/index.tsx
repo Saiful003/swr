@@ -1,20 +1,47 @@
 import Head from "next/head";
 import { IFriend } from "../types";
 import supabase from "../config/supabase";
-import { GetServerSideProps } from "next";
 import Card from "../components/Card";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiPlus } from "react-icons/bi";
 import { useRouter } from "next/router";
 import Container from "../components/Container";
+import { useAuth } from "../context/authContext";
+import { useProtectPage } from "../hooks/useProtectPage";
 
-interface IProps {
-  friends: IFriend[];
-}
-
-const Home = ({ friends }: IProps) => {
-  const [myFriends, setMyFriends] = useState<IFriend[]>(friends);
+const Home = () => {
+  const [myFriends, setMyFriends] = useState<IFriend[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+  const [orderBy, setOrderBy] = useState<string>("created_at");
   const router = useRouter();
+  const { user } = useAuth();
+
+  console.log(user);
+  // protect this page
+  useProtectPage();
+
+  // fetch friends
+  const getFriends = async () => {
+    const { data: friends, error } = await supabase
+      .from("friends")
+      .select("*")
+      .order(orderBy, { ascending: false });
+    if (friends) {
+      setLoading(false);
+      setError(null);
+      setMyFriends(friends);
+    }
+    if (error) {
+      setLoading(true);
+      setError("There was an error occured!");
+    }
+  };
+
+  useEffect(() => {
+    getFriends();
+  }, [orderBy]);
+
   // delete friend
   const deleteFriend = async (id: number) => {
     const { error } = await supabase.from("friends").delete().match({ id });
@@ -23,6 +50,17 @@ const Home = ({ friends }: IProps) => {
       setMyFriends(remainFriend);
     }
   };
+  if (!user) {
+    return null;
+  }
+
+  if (loading) {
+    return (
+      <Container>
+        <h2 className="text-xl font-medium mt-3"> Loading... </h2>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -71,15 +109,15 @@ const Home = ({ friends }: IProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const { data: friends } = await supabase
-    .from("friends")
-    .select("*")
-    .order("created_at", { ascending: false });
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const { data: friends } = await supabase
+//     .from("friends")
+//     .select("*")
+//     .order("created_at", { ascending: false });
 
-  return {
-    props: { friends }, // will be passed to the page component as props
-  };
-};
+//   return {
+//     props: { friends }, // will be passed to the page component as props
+//   };
+// };
 
 export default Home;

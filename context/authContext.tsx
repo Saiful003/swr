@@ -1,18 +1,58 @@
-import React, { useContext, useState } from "react";
+import { useRouter } from "next/router";
+import React, { useContext, useEffect, useState } from "react";
+import supabase from "../config/supabase";
 import { IChildren } from "../types";
 
-interface AuthContextInterface {
-  user: null | string;
+interface IUser {
+  role: string;
+  email: string;
 }
 
-const AuthContext = React.createContext<AuthContextInterface | null>(null);
+interface AppContextInterface {
+  user: IUser | null;
+  signOutUser: () => void;
+}
 
-// custom hook to access context data
-export const useAuth = () => useContext(AuthContext);
+const AuthContext = React.createContext<AppContextInterface | null>(null);
+
+// custom hook to consume context data
+export const useAuth = () => useContext(AuthContext) as AppContextInterface;
 
 export function AuthProvider({ children }: IChildren) {
-  const [user, setUser] = useState("name");
+  const [user, setUser] = useState<IUser | null>(null);
+  const router = useRouter();
 
-  const value = { user };
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  // sign out an user
+  const signOutUser = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (!error) {
+      router.push("/login");
+    }
+  };
+
+  useEffect(() => {
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log(event);
+      if (event === "SIGNED_IN") {
+        setUser({
+          email: session?.user?.email!,
+          role: session?.user?.role!,
+        });
+      }
+      if (event === "SIGNED_OUT") {
+        setUser(null);
+      }
+    });
+  }, []);
+
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        signOutUser,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

@@ -1,47 +1,71 @@
 import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import Container from "../../components/Container";
 import Form from "../../components/Form";
 import Input from "../../components/Input";
 import supabase from "../../config/supabase";
 import { IFriend } from "../../types";
 
-// interface IInputs {
-//   name: string;
-//   sector: string;
-//   introduceBy: string;
-//   age: number | string;
-// }
-
-interface IProps {
-  friend: IFriend;
-}
-
-function FriendDetail({ friend }: IProps) {
-  const { register, handleSubmit, formState } = useForm<IFriend>({
+function FriendDetail() {
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const { register, handleSubmit, formState, reset } = useForm<IFriend>({
     defaultValues: {
-      name: friend.name,
-      profession: friend.profession,
-      introduceBy: friend.introduceBy,
-      age: friend.age,
+      name: "",
+      age: 0,
+      introduceBy: "",
+      profession: "",
     },
   });
   const { errors } = formState;
   const { name, age, introduceBy, profession } = errors;
   const router = useRouter();
 
+  // fetch friend
+  const getFriend = async () => {
+    const { data: friend, error } = await supabase
+      .from("friends")
+      .select("*")
+      .eq("id", router.query.id)
+      .single();
+
+    if (friend) {
+      setLoading(false);
+      setError(null);
+      reset(friend);
+    }
+    if (error) {
+      setLoading(true);
+      setError("There was an error occured!");
+    }
+  };
+
+  useEffect(() => {
+    getFriend();
+  }, []);
+
   // onSubmit function
   const onSubmit: SubmitHandler<IFriend> = async (data) => {
     const { data: updatedFriend } = await supabase
       .from("friends")
       .update(data)
-      .match({ id: friend.id });
+      .match({ id: router.query.id });
 
     if (updatedFriend) {
       router.push("/");
     }
   };
+
+  if (loading) {
+    return (
+      <Container>
+        <h2 className="text-xl font-medium mt-3"> Loading... </h2>
+      </Container>
+    );
+  }
 
   return (
     <>
@@ -113,35 +137,35 @@ function FriendDetail({ friend }: IProps) {
 }
 
 // run build time
-export const getStaticPaths = async () => {
-  const { data } = await supabase.from("friends").select("*");
+// export const getStaticPaths = async () => {
+//   const { data } = await supabase.from("friends").select("*");
 
-  const paths = data?.map((friend) => {
-    return {
-      params: {
-        id: friend.id.toString(),
-      },
-    };
-  });
+//   const paths = data?.map((friend) => {
+//     return {
+//       params: {
+//         id: friend.id.toString(),
+//       },
+//     };
+//   });
 
-  return {
-    paths,
-    fallback: "blocking",
-  };
-};
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { data: friend } = await supabase
-    .from("friends")
-    .select("*")
-    .eq("id", params?.id)
-    .single();
+//   return {
+//     paths,
+//     fallback: "blocking",
+//   };
+// };
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
+//   const { data: friend } = await supabase
+//     .from("friends")
+//     .select("*")
+//     .eq("id", params?.id)
+//     .single();
 
-  return {
-    props: {
-      friend,
-    },
-    revalidate: 60,
-  };
-};
+//   return {
+//     props: {
+//       friend,
+//     },
+//     revalidate: 60,
+//   };
+// };
 
 export default FriendDetail;

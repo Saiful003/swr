@@ -4,23 +4,32 @@ import supabase from "../config/supabase";
 import { useRouter } from "next/router";
 import Form from "../components/Form";
 import { IFriend } from "../types";
+import { useAuth } from "../context/authContext";
+import { useProtectPage } from "../hooks/useProtectPage";
 
 function CreateNewFriend() {
   const { register, handleSubmit, formState } = useForm<IFriend>();
   const { errors } = formState;
   const { name, age, introduceBy, profession } = errors;
   const router = useRouter();
+  const { user } = useAuth();
+
+  // protect this page
+  useProtectPage();
 
   // onSubmit function
   const onSubmit: SubmitHandler<IFriend> = async (data) => {
     const { data: friend, error } = await supabase
       .from("friends")
       .insert([data]);
-    console.log(error);
     if (friend) {
       router.push("/");
     }
   };
+
+  if (!user) {
+    return null;
+  }
 
   return (
     <div className="h-[calc(100vh-81px)]  flex items-center justify-center">
