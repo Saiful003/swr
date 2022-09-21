@@ -72,7 +72,7 @@ function Login() {
             Login
           </button>
           <p>
-            Don't have an account ?
+            Don't have an account &apos;?
             <Link href="/signup">
               <a className="font-medium text-emerald-600">
                 &apos; Sign Up &apos;
