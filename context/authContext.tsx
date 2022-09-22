@@ -4,7 +4,7 @@ import supabase from "../config/supabase";
 import { IChildren } from "../types";
 
 interface AppContextInterface {
-  currentUser: any;
+  currentUser: null | { email: string };
   loading: boolean;
   signOutUser: () => void;
 }
@@ -15,7 +15,9 @@ const AuthContext = React.createContext<AppContextInterface | null>(null);
 export const useAuth = () => useContext(AuthContext) as AppContextInterface;
 
 export function AuthProvider({ children }: IChildren) {
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<{ email: string } | null>(
+    null
+  );
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
@@ -32,14 +34,14 @@ export function AuthProvider({ children }: IChildren) {
     // initially set current user
     const supabaseSession = supabase.auth.session();
     if (supabaseSession?.user?.id) {
-      setCurrentUser(supabaseSession.user);
+      setCurrentUser({ email: supabaseSession.user.email! });
     }
     setLoading(false);
 
     // it's run when everytime auth changed
     supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user?.id) {
-        setCurrentUser(session.user);
+        setCurrentUser({ email: session.user.email! });
       } else {
         setCurrentUser(null);
       }

@@ -96,9 +96,15 @@ function SignUp() {
           </button>
           <p>
             Already have an account ?
-            <Link href="/login">
-              <a className="font-medium text-emerald-600"> Login </a>
-            </Link>
+            <strong>
+              <Link href="/login">
+                <a className="font-medium text-emerald-600 hover:underline">
+                  {" "}
+                  Login{" "}
+                </a>
+              </Link>
+            </strong>
+            please.
           </p>
         </form>
       </Form>

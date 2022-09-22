@@ -21,11 +21,15 @@ function Header() {
                 Create a new friend
               </a>
             </Link>
-            <p className="font-medium">{currentUser?.email}</p>
             {currentUser && (
-              <Link href="/logout">
-                <a className="border px-4 py-2 font-medium">Logout</a>
-              </Link>
+              <>
+                <Link href="/logout">
+                  <a className="border px-4 py-2 font-medium">Logout</a>
+                </Link>
+                <p className="font-medium w-10 aspect-square rounded-full flex items-center justify-center bg-emerald-400 text-white">
+                  {currentUser?.email.charAt(0).toUpperCase()}
+                </p>
+              </>
             )}
           </div>
         </div>
