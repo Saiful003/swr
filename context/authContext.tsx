@@ -33,17 +33,17 @@ export function AuthProvider({ children }: IChildren) {
     const supabaseSession = supabase.auth.session();
     if (supabaseSession?.user?.id) {
       setCurrentUser(supabaseSession.user);
-      setLoading(false);
     }
+    setLoading(false);
 
     // it's run when everytime auth changed
     supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user?.id) {
         setCurrentUser(session.user);
-        setLoading(false);
       } else {
         setCurrentUser(null);
       }
+      setLoading(false);
     });
   }, []);
 
