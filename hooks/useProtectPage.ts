@@ -4,10 +4,10 @@ import { useAuth } from "../context/authContext";
 
 export function useProtectPage() {
   const router = useRouter();
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   useEffect(() => {
-    if (!user) {
+    if (!currentUser) {
       router.push("/login");
     }
   }, []);

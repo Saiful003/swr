@@ -15,7 +15,7 @@ const Home = () => {
   const [error, setError] = useState<string | null>(null);
   const [orderBy, setOrderBy] = useState<string>("created_at");
   const router = useRouter();
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   // protect this page
   useProtectPage();
@@ -50,7 +50,7 @@ const Home = () => {
     }
   };
 
-  if (!user) {
+  if (!currentUser) {
     return null;
   }
 

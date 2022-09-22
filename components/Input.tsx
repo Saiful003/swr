@@ -14,14 +14,14 @@ const Input = forwardRef<HTMLInputElement, IProps>(
   ({ label, name, type, placeholder, isError, errorMessage, ...rest }, ref) => {
     const [passwordType, setPasswordType] = useState(true);
 
-    const handleTypeSelection = (receiveType: string) => {
-      if (receiveType === "password") {
+    const handleTypeSelection = (inputType: string) => {
+      if (inputType === "password") {
         if (passwordType) {
           return "password";
         }
         return "text";
       }
-      return receiveType;
+      return inputType;
     };
 
     return (

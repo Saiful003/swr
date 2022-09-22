@@ -3,13 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import supabase from "../config/supabase";
 import { IChildren } from "../types";
 
-interface IUser {
-  role: string;
-  email: string;
-}
-
 interface AppContextInterface {
-  user: IUser | null;
+  currentUser: any;
   signOutUser: () => void;
 }
 
@@ -19,7 +14,8 @@ const AuthContext = React.createContext<AppContextInterface | null>(null);
 export const useAuth = () => useContext(AuthContext) as AppContextInterface;
 
 export function AuthProvider({ children }: IChildren) {
-  const [user, setUser] = useState<IUser | null>(null);
+  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
 
   // sign out an user
@@ -31,27 +27,32 @@ export function AuthProvider({ children }: IChildren) {
   };
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
-        setUser({
-          email: session?.user?.email!,
-          role: session?.user?.role!,
-        });
+    // initially set current user
+    const supabaseSession = supabase.auth.session();
+    if (supabaseSession?.user?.id) {
+      setCurrentUser(supabaseSession.user);
+    }
+    setLoading(false);
+
+    // it's run when everytime auth changed
+    supabase.auth.onAuthStateChange((_event, session) => {
+      if (session?.user?.id) {
+        setCurrentUser(session.user);
+      } else {
+        setCurrentUser(null);
       }
-      if (event === "SIGNED_OUT") {
-        setUser(null);
-      }
+      setLoading(false);
     });
   }, []);
 
   return (
     <AuthContext.Provider
       value={{
-        user,
+        currentUser,
         signOutUser,
       }}
     >
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 }

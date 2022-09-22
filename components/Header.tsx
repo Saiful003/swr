@@ -4,7 +4,7 @@ import { useAuth } from "../context/authContext";
 import Container from "./Container";
 
 function Header() {
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   return (
     <div className="border-b">
@@ -21,8 +21,8 @@ function Header() {
                 Create a new friend
               </a>
             </Link>
-            <p className="font-medium"> {user?.email} </p>
-            {user && (
+            <p className="font-medium">{currentUser?.email}</p>
+            {currentUser && (
               <Link href="/logout">
                 <a className="border px-4 py-2 font-medium">Logout</a>
               </Link>

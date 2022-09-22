@@ -12,7 +12,7 @@ function CreateNewFriend() {
   const { errors } = formState;
   const { name, age, introduceBy, profession } = errors;
   const router = useRouter();
-  const { user } = useAuth();
+  const { currentUser } = useAuth();
 
   // protect this page
   useProtectPage();
@@ -27,7 +27,7 @@ function CreateNewFriend() {
     }
   };
 
-  if (!user) {
+  if (!currentUser) {
     return null;
   }
 
