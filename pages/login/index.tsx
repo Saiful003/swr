@@ -39,7 +39,7 @@ function Login() {
     <div className="h-[calc(100vh-81px)] flex items-center justify-center">
       <Form>
         <h2 className="text-center font-medium text-2xl mt-2 mb-4">
-          Login Please
+          <span className="text-emerald-500">Login </span> Please
         </h2>
         {signInError && <Alert danger errorMessage={signInError!} />}
         <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>

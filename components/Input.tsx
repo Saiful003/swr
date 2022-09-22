@@ -26,12 +26,12 @@ const Input = forwardRef<HTMLInputElement, IProps>(
 
     return (
       <div>
-        <label className="block mb-1 text-gray-500" htmlFor={name}>
+        <label className="block mb-1 text-gray-400 font-medium" htmlFor={name}>
           {label} :
         </label>
         <div className="relative">
           <input
-            className="border w-full focus:outline-none p-2"
+            className="border w-full focus:outline-none focus:border-emerald-300 p-2"
             placeholder={placeholder}
             type={handleTypeSelection(type)}
             id={name}
@@ -44,7 +44,11 @@ const Input = forwardRef<HTMLInputElement, IProps>(
               onClick={() => setPasswordType(!passwordType)}
               className="absolute text-2xl right-2 top-0 bottom-0 flex items-center cursor-pointer"
             >
-              {passwordType ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              {passwordType ? (
+                <AiOutlineEyeInvisible className="text-gray-500" />
+              ) : (
+                <AiOutlineEye className="text-gray-500" />
+              )}
             </div>
           )}
         </div>

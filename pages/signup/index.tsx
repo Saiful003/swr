@@ -52,7 +52,7 @@ function SignUp() {
     <div className="h-[calc(100vh-81px)]  flex items-center justify-center">
       <Form>
         <h2 className="text-center font-medium text-2xl mt-2 mb-4">
-          Sign Up Please
+          <span className="text-emerald-500"> Sign up </span> Please
         </h2>
         {signUpError && <Alert danger errorMessage={signUpError!} />}
 
@@ -98,7 +98,7 @@ function SignUp() {
             Already have an account ?
             <strong>
               <Link href="/login">
-                <a className="font-medium text-emerald-600 hover:underline">
+                <a className="font-medium text-emerald-500 hover:underline">
                   {" "}
                   Login{" "}
                 </a>
