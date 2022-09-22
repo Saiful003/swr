@@ -6,8 +6,6 @@ import { useRouter } from "next/router";
 import Alert from "../../components/Alert";
 import { useState } from "react";
 import supabase from "../../config/supabase";
-import { useAuth } from "../../context/authContext";
-import Container from "../../components/Container";
 
 interface IInput {
   email: string;
@@ -20,9 +18,6 @@ function Login() {
   const { email, password } = errors;
   const [signInError, setSignInError] = useState<string | null>(null);
   const router = useRouter();
-  const { loading } = useAuth();
-
-  console.log(loading);
 
   // onSubmit function
   const onSubmit: SubmitHandler<IInput> = async ({ email, password }) => {
@@ -40,15 +35,6 @@ function Login() {
       router.push("/");
     }
   };
-
-  if (loading) {
-    return (
-      <Container>
-        <h2 className="text-xl font-medium mt-3"> Loading... </h2>
-      </Container>
-    );
-  }
-
   return (
     <div className="h-[calc(100vh-81px)] flex items-center justify-center">
       <Form>
