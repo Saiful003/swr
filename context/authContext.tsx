@@ -5,6 +5,7 @@ import { IChildren } from "../types";
 
 interface AppContextInterface {
   currentUser: any;
+  loading: boolean;
   signOutUser: () => void;
 }
 
@@ -23,6 +24,7 @@ export function AuthProvider({ children }: IChildren) {
     const { error } = await supabase.auth.signOut();
     if (!error) {
       router.push("/login");
+      setLoading(false);
     }
   };
 
@@ -31,23 +33,24 @@ export function AuthProvider({ children }: IChildren) {
     const supabaseSession = supabase.auth.session();
     if (supabaseSession?.user?.id) {
       setCurrentUser(supabaseSession.user);
+      setLoading(false);
     }
-    setLoading(false);
 
     // it's run when everytime auth changed
     supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user?.id) {
         setCurrentUser(session.user);
+        setLoading(false);
       } else {
         setCurrentUser(null);
       }
-      setLoading(false);
     });
   }, []);
 
   return (
     <AuthContext.Provider
       value={{
+        loading,
         currentUser,
         signOutUser,
       }}

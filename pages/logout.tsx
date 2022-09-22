@@ -4,7 +4,6 @@ import { useAuth } from "../context/authContext";
 
 function Logout() {
   const { signOutUser } = useAuth();
-
   useEffect(() => {
     signOutUser();
   }, []);
