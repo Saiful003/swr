@@ -66,7 +66,7 @@ const Home = () => {
                 id={singleFriend._id}
                 introduceBy={singleFriend.introduceBy}
                 profession={singleFriend.profession}
-                // image={singleFriend.image}
+                image={singleFriend.image}
                 gender={singleFriend.gender}
                 onClick={deleteFriend}
               />

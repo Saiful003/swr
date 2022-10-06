@@ -3,16 +3,18 @@ import dbConnect from "../../../../lib/dbConnect";
 import { responseHandler } from "../../../../utils/responseHandler";
 import { authOptions } from "../../../../pages/api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
+import { cloudinaryUpload } from "../../../../config/cloudinary";
+import { formatBufferTo64 } from "../../../../lib/dataUri";
 
 import nc from "next-connect";
-// import cloudinary from "../../../../config/cloudinary";
-// import upload from "../../../../config/multer";
+import cloudinary from "../../../../config/cloudinary";
+import upload from "../../../../config/multer";
 
-// export const config = {
-//   api: {
-//     bodyParser: false,
-//   },
-// };
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
 // export default async function handler(req, res) {
 //   const session = await unstable_getServerSession(req, res, authOptions);
@@ -60,28 +62,25 @@ const handler = nc({
     res.status(404).end("Page is not found");
   },
 })
-  // .use(upload.single("file"))
+  .use(upload.single("file"))
   .post(async (req, res) => {
     const session = await unstable_getServerSession(req, res, authOptions);
     const { body, file } = req;
 
-    console.log(body);
-
+    const file64 = formatBufferTo64(file);
     // connect to database
     await dbConnect();
 
     try {
-      // save image to cloudinary
-      // const { url } = await cloudinary.uploader.upload(
-      //   `D:\\learn-supabase\\Next-Boilerplate\\public\\uploads\\${file.filename}`,
-      //   { public_id: "friends" }
-      // );
+      // file upload
+
+      const { url } = await cloudinaryUpload(file64.content);
 
       // create new friend
       const newFriend = new Friend({
         ...body,
         image: {
-          url: "Saiful Shanto",
+          url,
         },
         user_id: session?.user?.user_id,
       });

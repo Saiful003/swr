@@ -9,7 +9,7 @@ function Card({
   id,
   introduceBy,
   name,
-  // image,
+  image,
   profession,
   gender,
   onClick,
@@ -18,7 +18,7 @@ function Card({
 
   return (
     <div>
-      {/* <div className="relative w-full h-[200px] overflow-hidden">
+      <div className="relative w-full h-[200px] overflow-hidden">
         <Image
           className="rounded-sm"
           src={image.url}
@@ -27,7 +27,7 @@ function Card({
           objectFit="cover"
           priority
         />
-      </div> */}
+      </div>
       <div className="p-3">
         <div className="flex flex-col gap-1">
           <h2 className="text-xl font-medium mb-2 pb-2 border-b border-b-emerald-300">
