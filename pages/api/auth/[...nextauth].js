@@ -9,7 +9,6 @@ export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
-      credentials: {},
       async authorize(credentials, req) {
         const { email, password } = credentials;
 
@@ -41,7 +40,6 @@ export const authOptions = {
     async session({ session, user, token }) {
       session.user.username = token.username;
       session.user.user_id = token.sub;
-
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {
@@ -53,6 +51,9 @@ export const authOptions = {
   },
 
   secret: process.env.NEXTAUTH_SECRET,
+  session: {
+    strategy: "jwt",
+  },
 };
 
 export default NextAuth(authOptions);

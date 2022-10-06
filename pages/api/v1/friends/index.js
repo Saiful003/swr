@@ -3,10 +3,11 @@ import Friend from "../../../../Model/friendsModel";
 import { responseHandler } from "../../../../utils/responseHandler";
 import { authOptions } from "../../auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
-import { Query } from "mongoose";
 
 export default async function handler(req, res) {
   const session = await unstable_getServerSession(req, res, authOptions);
+
+  console.log(session);
   const { method, query } = req;
   // connect to database
   await dbConnect();
@@ -43,7 +44,8 @@ export default async function handler(req, res) {
         message: allFriends,
         code: 200,
       });
-    } catch {
+    } catch (err) {
+      console.log(err);
       responseHandler({
         res,
         message: "Failed to get all friends",

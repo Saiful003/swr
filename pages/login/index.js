@@ -28,7 +28,7 @@ function Login() {
       return;
     }
     setError(null);
-    router.replace("/");
+    router.push("/");
   };
   return (
     <div className="h-[calc(100vh-82px)] flex items-center justify-center">

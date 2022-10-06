@@ -34,9 +34,6 @@ const Home = () => {
 
   if (status === "unauthenticated") {
     router.push("/login");
-  }
-
-  if (status === "unauthenticated") {
     return null;
   }
   return (

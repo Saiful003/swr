@@ -6,7 +6,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
   shorten: true,
   secure: true,
-  ssl_detected: true,
+  // ssl_detected: true,
 });
 
 export default cloudinary;
