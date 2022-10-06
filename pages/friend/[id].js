@@ -12,10 +12,10 @@ function FriendDetail({ friend }) {
   const [loading, setLoading] = useState(false);
   const [imageUpload, setImageUpload] = useState(false);
 
-  const handleImage = (e) => {
-    const file = e.target.files[0];
-    setImageFile(file);
-  };
+  // const handleImage = (e) => {
+  //   const file = e.target.files[0];
+  //   setImageFile(file);
+  // };
   const { register, handleSubmit, formState } = useForm({
     defaultValues: {
       name: friend.name,
@@ -36,12 +36,12 @@ function FriendDetail({ friend }) {
       return;
     }
 
-    if (!imageFile) {
-      return setError("Please insert your friend image");
-    }
+    // if (!imageFile) {
+    //   return setError("Please insert your friend image");
+    // }
 
     // enable loading state
-    setError(null);
+    // setError(null);
     setLoading(true);
 
     const form = new FormData();
@@ -49,7 +49,7 @@ function FriendDetail({ friend }) {
     form.append("age", data.age);
     form.append("introduceBy", data.introduceBy);
     form.append("profession", data.profession);
-    form.append("file", imageFile);
+    // form.append("file", imageFile);
     await customAxios.put(`/friends/imageUpdate/${router.query.id}`, form);
 
     // disable loading state
@@ -129,10 +129,10 @@ function FriendDetail({ friend }) {
             >
               Click for update image
             </p>
-            {error && <span className="text-red-500 text-sm">{error}</span>}
+            {/* {error && <span className="text-red-500 text-sm">{error}</span>}
             {imageUpload && (
               <input onChange={handleImage} type="file" name="file" />
-            )}
+            )} */}
             <p
               className={!imageUpload && "hidden"}
               onClick={() => {

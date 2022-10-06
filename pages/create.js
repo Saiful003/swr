@@ -22,9 +22,9 @@ function CreateNewFriend() {
   // onSubmit function
   const onSubmit = async (data) => {
     //validation first
-    if (!imageFile) {
-      return setError("Please insert your friend image");
-    }
+    // if (!imageFile) {
+    //   return setError("Please insert your friend image");
+    // }
 
     // enable loading state
     setLoading(true);
@@ -35,8 +35,8 @@ function CreateNewFriend() {
     form.append("introduceBy", data.introduceBy);
     form.append("profession", data.profession);
     form.append("gender", data.gender);
-    form.append("file", imageFile);
-    await customAxios.post("/create", form);
+    // form.append("file", imageFile);
+    await customAxios.post("/create", data);
     // disable loading state
     setLoading(false);
     router.replace("/");
@@ -99,8 +99,8 @@ function CreateNewFriend() {
             </option>
             <option value="female">female</option>
           </select>
-          {error && <span className="text-red-500 text-sm">{error}</span>}
-          <input onChange={handleImage} type="file" name="file" />
+          {/* {error && <span className="text-red-500 text-sm">{error}</span>}
+          <input onChange={handleImage} type="file" name="file" /> */}
           <button
             type="submit"
             className="px-3 py-2 mt-2 rounded-sm bg-emerald-500 hover:bg-emerald-600 text-white font-medium"
