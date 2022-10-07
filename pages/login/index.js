@@ -28,7 +28,7 @@ function Login() {
     if (!result.ok) {
       // do your stuff...
       setError(result.error);
-      setLoading(true);
+      setLoading(false);
       return;
     }
 
