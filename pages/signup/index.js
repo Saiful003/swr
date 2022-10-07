@@ -14,33 +14,24 @@ function SignUp() {
   const { firstname, lastname, email, password, confirmPassword } = errors;
   const router = useRouter();
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   // onSubmit function
   const onSubmit = async (data) => {
     // actual sign up process goes to here
 
-    // const result = await signIn("credentials", {
-    //   ...data,
-    //   redirect: false,
-    //   signUp: true,
-    // });
-    // console.log(result);
-
-    // if (!result.ok) {
-    //   // do your stuff...
-    //   setError(result.error);
-    //   return;
-    // }
-    // setError(null);
-    // router.replace("/login");
+    // enable loading state
+    setLoading(true);
 
     try {
       await customAxios.post("/signup", data);
+      setLoading(false);
       router.replace("/login");
     } catch (err) {
       const {
         data: { message },
       } = err.response;
+      setLoading(false);
       setError(message);
     }
   };
@@ -105,7 +96,7 @@ function SignUp() {
             })}
           />
           <Button type="submit" fill>
-            Sign up
+            {loading ? "Processing..." : "Sign up"}
           </Button>
           <p>
             Already have an account ?
