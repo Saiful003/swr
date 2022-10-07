@@ -3,11 +3,13 @@ import dbConnect from "../../../../lib/dbConnect";
 import { responseHandler } from "../../../../utils/responseHandler";
 import { authOptions } from "../../../../pages/api/auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth/next";
-import { cloudinaryUpload } from "../../../../config/cloudinary";
+import {
+  cloudinaryUpload,
+  cloudinaryTransformation,
+} from "../../../../config/cloudinary";
 import { formatBufferTo64 } from "../../../../lib/dataUri";
 
 import nc from "next-connect";
-import cloudinary from "../../../../config/cloudinary";
 import upload from "../../../../config/multer";
 
 export const config = {

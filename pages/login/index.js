@@ -13,9 +13,12 @@ function Login() {
   const [error, setError] = useState(null);
   const { errors } = formState;
   const { email, password } = errors;
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   // onSubmit function
   const onSubmit = async (data) => {
+    // enable loading state
+    setLoading(true);
     // actual login process goes to here
     const result = await signIn("credentials", {
       ...data,
@@ -25,8 +28,12 @@ function Login() {
     if (!result.ok) {
       // do your stuff...
       setError(result.error);
+      setLoading(true);
       return;
     }
+
+    // normal stuff.../
+    setLoading(false);
     setError(null);
     router.push("/");
   };
@@ -59,7 +66,7 @@ function Login() {
             })}
           />
           <Button type="submit" fill>
-            Login
+            {loading ? "Processing..." : "Login"}
           </Button>
           <p>
             Don&apos;t have an account ?
