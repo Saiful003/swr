@@ -55,7 +55,6 @@ export const config = {
 
 const handler = nc({
   onError: (err, req, res, next) => {
-    console.error(err);
     res.status(500).end("Something broke!");
   },
   onNoMatch: (req, res) => {

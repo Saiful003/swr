@@ -19,7 +19,6 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           options={{ showSpinner: false }}
         />
         <Header />
-
         <Component {...pageProps} />
       </Provider>
     </SessionProvider>

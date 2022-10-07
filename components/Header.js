@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import IconButton from "./IconButton";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useTheme } from "../hooks/useTheme";
+import classNames from "classnames";
 
 function Header() {
   const { data: session, status } = useSession();
@@ -15,7 +16,7 @@ function Header() {
   const { isLightTheme, handleSwitchTheme } = useTheme();
 
   return (
-    <div className="border shadow-sm">
+    <header className="border shadow-sm">
       <Container>
         <div className="flex flex-col lg:flex-row md:justify-between gap-y-4 items-center min-h-[80px] py-3 lg:py-0">
           <Link href="/">
@@ -63,7 +64,7 @@ function Header() {
           </div>
         </div>
       </Container>
-    </div>
+    </header>
   );
 }
 

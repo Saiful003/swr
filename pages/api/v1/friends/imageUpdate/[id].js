@@ -1,9 +1,10 @@
 import nc from "next-connect";
 import dbConnect from "../../../../../lib/dbConnect";
 import upload from "../../../../../config/multer";
-import cloudinary from "../../../../../config/cloudinary";
+import { cloudinaryUpload } from "../../../../../config/cloudinary";
 import Friend from "../../../../../Model/friendsModel";
 import { responseHandler } from "../../../../../utils/responseHandler";
+import { formatBufferTo64 } from "../../../../../lib/dataUri";
 
 export const config = {
   api: {
@@ -24,14 +25,13 @@ const handler = nc({
   .put(async (req, res) => {
     const { body, file } = req;
     const { id } = req.query;
+    const file64 = formatBufferTo64(file);
+
     // connect to database
     await dbConnect();
 
     // save image to cloudinary
-    const { url } = await cloudinary.uploader.upload(
-      `D:\\learn-supabase\\Next-Boilerplate\\public\\uploads\\${file.filename}`,
-      { public_id: "friends" }
-    );
+    const { url } = await cloudinaryUpload(file64.content);
 
     try {
       await Friend.findByIdAndUpdate(

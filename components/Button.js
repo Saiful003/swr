@@ -6,7 +6,7 @@ function Button({ children, onClick, fill, outline, type }) {
     <button
       type={type}
       className={classNames(
-        "px-4 py-2 rounded-md font-medium",
+        "px-4 py-2 rounded-md font-medium ",
         {
           "bg-emerald-500 hover:bg-emerald-600 text-white ": fill,
         },

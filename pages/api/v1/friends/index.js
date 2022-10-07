@@ -7,7 +7,6 @@ import { unstable_getServerSession } from "next-auth";
 export default async function handler(req, res) {
   const session = await unstable_getServerSession(req, res, authOptions);
 
-  console.log(session);
   const { method, query } = req;
   // connect to database
   await dbConnect();
@@ -45,7 +44,7 @@ export default async function handler(req, res) {
         code: 200,
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       responseHandler({
         res,
         message: "Failed to get all friends",
