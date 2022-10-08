@@ -20,7 +20,7 @@ function Card({
     <div>
       <div className="relative w-full h-[200px] overflow-hidden">
         <Image
-          className="rounded-sm"
+          className="rounded-md"
           src={image.url}
           alt="friend-image"
           layout="fill"

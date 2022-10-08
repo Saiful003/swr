@@ -7,7 +7,8 @@ import Alert from "../../components/Alert";
 import { useState } from "react";
 import Button from "../../components/Button";
 import customAxios from "../../config/axios";
-import { signIn } from "next-auth/react";
+import OtpPreview from "../../components/OtpPreview";
+
 function SignUp() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
@@ -15,6 +16,8 @@ function SignUp() {
   const router = useRouter();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [otpPriview, setOtpPreview] = useState(false);
+  const [userMail, setUserMail] = useState(null);
 
   // onSubmit function
   const onSubmit = async (data) => {
@@ -22,97 +25,106 @@ function SignUp() {
 
     // enable loading state
     setLoading(true);
-
     try {
+      // api call
       await customAxios.post("/signup", data);
       setLoading(false);
-      router.replace("/login");
+      setError(null);
+      setUserMail(data.email);
+      setOtpPreview(true);
     } catch (err) {
-      const {
-        data: { message },
-      } = err.response;
       setLoading(false);
-      setError(message);
+      setOtpPreview(false);
+      setError(err.response.data.message);
     }
   };
 
-  return (
-    <div className="h-[calc(100vh-82px)]  flex items-center justify-center">
-      <Form>
-        <h2 className="text-center font-medium text-2xl mt-2 mb-4">
-          <span className="text-emerald-500"> Sign up </span> Please
-        </h2>
-        {error && <Alert danger errorMessage={error} />}
+  if (otpPriview) {
+    return <OtpPreview email={userMail} />;
+  }
 
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            isError={firstname?.type === "required"}
-            errorMessage={firstname?.message}
-            type="text"
-            placeholder="Enter Your First Name"
-            label="First Name"
-            {...register("firstname", {
-              required: "Please enter your first name",
-            })}
-          />
-          <Input
-            isError={lastname?.type === "required"}
-            errorMessage={lastname?.message}
-            type="text"
-            placeholder="Enter Your Last Name"
-            label="Last Name"
-            {...register("lastname", {
-              required: "Please enter your last name",
-            })}
-          />
-          <Input
-            isError={email?.type === "required"}
-            errorMessage={email?.message}
-            type="email"
-            placeholder="Enter Your Email"
-            label="Email"
-            {...register("email", {
-              required: "This email field is required.",
-            })}
-          />
-          <Input
-            isError={password?.type === "required"}
-            errorMessage={password?.message}
-            type="password"
-            placeholder="Enter Your Password"
-            label="Password"
-            {...register("password", {
-              required: "This password field is required.",
-            })}
-          />
-          <Input
-            isError={confirmPassword?.type === "required"}
-            errorMessage={confirmPassword?.message}
-            type="password"
-            placeholder="Enter Your Confirm Password"
-            label="Confirm Password"
-            {...register("confirmPassword", {
-              required: "This confirm password field is required.",
-            })}
-          />
-          <Button type="submit" fill>
-            {loading ? "Processing..." : "Sign up"}
-          </Button>
-          <p>
-            Already have an account ?
-            <strong>
-              <Link href="/login">
-                <a className="font-medium text-emerald-500 hover:underline">
-                  {" "}
-                  Login{" "}
-                </a>
-              </Link>
-            </strong>
-            please.
-          </p>
-        </form>
-      </Form>
-    </div>
+  return (
+    <>
+      <div className="h-[calc(100vh-82px)]  flex items-center justify-center">
+        <Form>
+          <h2 className="text-center font-medium text-2xl mt-2 mb-4">
+            <span className="text-emerald-500"> Sign up </span> Please
+          </h2>
+          {error && <Alert danger errorMessage={error} />}
+
+          <form
+            className="flex flex-col gap-2"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <Input
+              isError={firstname?.type === "required"}
+              errorMessage={firstname?.message}
+              type="text"
+              placeholder="Enter Your First Name"
+              label="First Name"
+              {...register("firstname", {
+                required: "Please enter your first name",
+              })}
+            />
+            <Input
+              isError={lastname?.type === "required"}
+              errorMessage={lastname?.message}
+              type="text"
+              placeholder="Enter Your Last Name"
+              label="Last Name"
+              {...register("lastname", {
+                required: "Please enter your last name",
+              })}
+            />
+            <Input
+              isError={email?.type === "required"}
+              errorMessage={email?.message}
+              type="email"
+              placeholder="Enter Your Email"
+              label="Email"
+              {...register("email", {
+                required: "This email field is required.",
+              })}
+            />
+            <Input
+              isError={password?.type === "required"}
+              errorMessage={password?.message}
+              type="password"
+              placeholder="Enter Your Password"
+              label="Password"
+              {...register("password", {
+                required: "This password field is required.",
+              })}
+            />
+            <Input
+              isError={confirmPassword?.type === "required"}
+              errorMessage={confirmPassword?.message}
+              type="password"
+              placeholder="Enter Your Confirm Password"
+              label="Confirm Password"
+              {...register("confirmPassword", {
+                required: "This confirm password field is required.",
+              })}
+            />
+            <Button type="submit" fill>
+              {loading ? "Processing..." : "Sign up"}
+            </Button>
+            <p>
+              Already have an account ?
+              <strong>
+                <Link href="/login">
+                  <a className="font-medium text-emerald-500 hover:underline">
+                    {" "}
+                    Login{" "}
+                  </a>
+                </Link>
+              </strong>
+              please.
+            </p>
+          </form>
+        </Form>
+      </div>
+    </>
   );
 }
 

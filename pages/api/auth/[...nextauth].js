@@ -20,6 +20,9 @@ export const authOptions = {
         if (!user) {
           throw new Error("Did not found any user");
         }
+        if (user && !user.isVerifiedUser) {
+          throw new Error("Unverified User");
+        }
 
         const isValidPassword = await bcrypt.compare(password, user.password);
 
