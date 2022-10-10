@@ -40,6 +40,8 @@ export default async function handler(req, res) {
           code: 500,
         });
       }
+
+      // when user is not verified
       if (isExistUser && !isExistUser.isVerifiedUser) {
         // only user verification process
         // create otp number
@@ -59,7 +61,7 @@ export default async function handler(req, res) {
         }
         await User.updateOne(
           { email },
-          { $set: { otp: hashedOtp, firstname, lastname } }
+          { $set: { otp: { otpcode: hashedOtp }, firstname, lastname } }
         );
 
         // send otp to user email
@@ -89,7 +91,10 @@ export default async function handler(req, res) {
         lastname,
         email,
         password: hashedPassword,
-        otp: hashedOtp,
+        otp: {
+          otpcode: hashedOtp,
+          expiresIn: Date.now() + 30000,
+        },
       });
       await newUser.save();
 

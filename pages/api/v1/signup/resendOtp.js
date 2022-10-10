@@ -2,6 +2,8 @@ import dbConnect from "../../../../lib/dbConnect";
 import User from "../../../../Model/userModel";
 import { responseHandler } from "../../../../utils/responseHandler";
 import bcrypt from "bcrypt";
+import { sendOtpViaMail } from "../../../../lib/sendOtpMail";
+import { generateOtp } from "../../../../utils/generateOtp";
 
 export default async function handler(req, res) {
   const { method, body } = req;
@@ -10,12 +12,11 @@ export default async function handler(req, res) {
   await dbConnect();
 
   if (method === "POST") {
-    const { email, otp } = body;
+    const { email } = body;
 
     try {
       // ====> validation start
-
-      if (!email || !otp) {
+      if (!email) {
         return responseHandler({
           res,
           message: "Please given necessary data",
@@ -24,39 +25,43 @@ export default async function handler(req, res) {
       }
 
       const user = await User.findOne({ email, isVerifiedUser: false });
-      const {
-        otp: { otpcode, expiresIn },
-      } = user;
 
-      const isValidOtp = await bcrypt.compare(otp, otpcode);
-
-      if (!isValidOtp || Date.now() > expiresIn) {
+      if (!user) {
         return responseHandler({
           res,
-          message: "Invalid OTP",
+          message: "User not found",
           code: 500,
         });
       }
-
       // ====> validation end
 
-      // General work flow start
+      // OTP resend workflow
 
+      // create a new OTP
+      const otp = generateOtp();
+
+      // hashed this otp
+      const hashedOtp = await bcrypt.hash(otp.toString(), 10);
+
+      // update user with this otp
       await User.updateOne(
-        { email, isVerifiedUser: false },
-        { $set: { isVerifiedUser: true } }
+        { email },
+        { $set: { otp: { otpcode: hashedOtp, expires: Date.now() + 30000 } } }
       );
+
+      // send otp via mail
+      await sendOtpViaMail(email, otp);
+
       responseHandler({
         res,
-        message: "User (verified) Created Successfully",
+        message: `Resend new otp successfully ${otp} `,
         code: 200,
       });
-
       // General work flow end
     } catch (err) {
       responseHandler({
         res,
-        message: "OTP Vailidation Failed",
+        message: "OTP Resend Failed",
         code: 500,
       });
     }

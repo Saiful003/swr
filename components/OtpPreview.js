@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Form from "./Form";
 import Input from "./Input";
@@ -14,7 +14,28 @@ function OtpPreview({ email }) {
   const router = useRouter();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [resendLoading, setResendLoading] = useState(false);
+  const [otpExpireTime, setIsOtpExpireTime] = useState(30);
 
+  // resend otp
+  const resendOtp = async () => {
+    // enable loading state
+    setResendLoading(true);
+
+    await customAxios.post("/signup/resendOtp", { email });
+    setResendLoading(false);
+  };
+
+  const handleExpireOtp = () => {
+    setIsOtpExpireTime((prev) => {
+      if (prev > 0) return prev - 1;
+      return 0;
+    });
+  };
+  useEffect(() => {
+    const timer = setInterval(handleExpireOtp, 1000);
+    return () => clearInterval(timer);
+  }, []);
   const onSubmit = async (data) => {
     setLoading(true);
     try {
@@ -26,12 +47,12 @@ function OtpPreview({ email }) {
       setError(err.response.data.message);
       setLoading(false);
     }
-    // console.log(email, data.otp);
   };
 
   return (
     <div className="h-[calc(100vh-82px)]  flex items-center justify-center">
       <Form>
+        <p> {otpExpireTime}</p>
         <h2 className="text-center font-medium text-2xl mt-2 mb-4">
           <span className="text-emerald-500"> Email-OTP </span> Verification
         </h2>
@@ -47,6 +68,12 @@ function OtpPreview({ email }) {
               required: "Please enter your OTP Number",
             })}
           />
+
+          {!otpExpireTime && (
+            <a onClick={resendOtp} href="#">
+              {resendLoading ? "Processing..." : "Resend"}
+            </a>
+          )}
           <div className="mt-3">
             <Button type="submit" fill>
               {loading ? "Processing..." : "Submit"}
