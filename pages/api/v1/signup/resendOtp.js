@@ -46,7 +46,7 @@ export default async function handler(req, res) {
       // update user with this otp
       await User.updateOne(
         { email },
-        { $set: { otp: { otpcode: hashedOtp, expires: Date.now() + 30000 } } }
+        { $set: { otp: { otpcode: hashedOtp, expiresIn: Date.now() + 30000 } } }
       );
 
       // send otp via mail

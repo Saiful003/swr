@@ -1,19 +1,16 @@
 import mongoose, { modelNames } from "mongoose";
 const { Schema } = mongoose;
 
-const otpSchema = new Schema(
-  {
-    otpcode: {
-      type: String,
-      required: true,
-    },
-    expiresIn: {
-      type: String,
-      required: true,
-    },
+const otpSchema = new Schema({
+  otpcode: {
+    type: String,
+    required: true,
   },
-  { timestamps: true }
-);
+  expiresIn: {
+    type: String,
+    required: true,
+  },
+});
 
 const userSchema = new Schema(
   {

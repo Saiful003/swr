@@ -6,6 +6,8 @@ import { useRouter } from "next/router";
 import Button from "./Button";
 import customAxios from "../config/axios";
 import Alert from "./Alert";
+import { useInterval } from "../hooks/useInterval";
+import { useTimer } from "../hooks/useTimer";
 
 function OtpPreview({ email }) {
   const { register, handleSubmit, formState } = useForm();
@@ -15,27 +17,18 @@ function OtpPreview({ email }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
-  const [otpExpireTime, setIsOtpExpireTime] = useState(30);
-
+  const { otpExpireTime, start } = useTimer({ duration: 30 });
   // resend otp
   const resendOtp = async () => {
     // enable loading state
     setResendLoading(true);
 
     await customAxios.post("/signup/resendOtp", { email });
+    // call expire timer
+    start();
     setResendLoading(false);
   };
 
-  const handleExpireOtp = () => {
-    setIsOtpExpireTime((prev) => {
-      if (prev > 0) return prev - 1;
-      return 0;
-    });
-  };
-  useEffect(() => {
-    const timer = setInterval(handleExpireOtp, 1000);
-    return () => clearInterval(timer);
-  }, []);
   const onSubmit = async (data) => {
     setLoading(true);
     try {
@@ -53,6 +46,7 @@ function OtpPreview({ email }) {
     <div className="h-[calc(100vh-82px)]  flex items-center justify-center">
       <Form>
         <p> {otpExpireTime}</p>
+
         <h2 className="text-center font-medium text-2xl mt-2 mb-4">
           <span className="text-emerald-500"> Email-OTP </span> Verification
         </h2>
