@@ -1,7 +1,7 @@
-import dbConnect from "../../../../lib/dbConnect";
-import Friend from "../../../../Model/friendsModel";
-import { responseHandler } from "../../../../utils/responseHandler";
-import { authOptions } from "../../auth/[...nextauth]";
+import dbConnect from "../../../lib/dbConnect";
+import Friend from "../../../Model/friendsModel";
+import { responseHandler } from "../../../utils/responseHandler";
+import { authOptions } from "../auth/[...nextauth]";
 import { unstable_getServerSession } from "next-auth";
 
 export default async function handler(req, res) {

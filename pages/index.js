@@ -19,7 +19,7 @@ const Home = () => {
     const getFriends = async () => {
       const {
         data: { message: friends },
-      } = await customAxios.get(`/friends/?gender=${filteredBy}`);
+      } = await customAxios.get(`/?gender=${filteredBy}`);
       setTotalFriends(friends);
     };
     getFriends();
