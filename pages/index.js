@@ -19,7 +19,7 @@ const Home = () => {
     if (!session) {
       router.push("/login");
     }
-  }, []);
+  }, [session]);
 
   useEffect(() => {
     const getFriends = async () => {
