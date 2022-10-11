@@ -15,8 +15,10 @@ const Home = () => {
   const session = useSession();
   const router = useRouter();
 
+  console.log(session);
+
   useEffect(() => {
-    if (!session) {
+    if (!session.data) {
       router.push("/login");
     }
   }, [session]);
@@ -38,7 +40,7 @@ const Home = () => {
     );
   };
 
-  if (!session) return null;
+  if (!session.data) return null;
 
   return (
     <>
