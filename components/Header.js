@@ -16,7 +16,15 @@ function Header() {
   const { isLightTheme, handleSwitchTheme } = useTheme();
 
   return (
-    <header className="border shadow-sm">
+    <header
+      className={classNames(
+        "shadow-sm",
+        {
+          "border-b ": isLightTheme,
+        },
+        { "bg-slate-800 border-b border-b-slate-700": !isLightTheme }
+      )}
+    >
       <Container>
         <div className="flex flex-col lg:flex-row md:justify-between gap-y-4 items-center min-h-[80px] py-3 lg:py-0">
           <Link href="/">
@@ -28,7 +36,7 @@ function Header() {
             {status === "authenticated" && (
               <>
                 <p className=" bg-emerald-500 text-white font-medium px-2 py-2 rounded-md">
-                  {session?.user?.username}
+                  {session?.user?.name}
                 </p>
                 <Link href="/create">
                   <Button fill>Create new friend</Button>

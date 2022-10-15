@@ -41,7 +41,8 @@ export const authOptions = {
   ],
   callbacks: {
     async session({ session, user, token }) {
-      session.user.username = token.username;
+      session.user.name = token.username;
+      session.user.image = null;
       session.user.user_id = token.sub;
       return session;
     },
@@ -52,11 +53,7 @@ export const authOptions = {
       return token;
     },
   },
-
   secret: process.env.NEXTAUTH_SECRET,
-  session: {
-    strategy: "jwt",
-  },
 };
 
 export default NextAuth(authOptions);

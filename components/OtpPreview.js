@@ -70,7 +70,7 @@ function OtpPreview({ email }) {
           )}
           <div className="mt-3">
             <Button type="submit" fill>
-              {loading ? "Processing..." : "Submit"}
+              {loading ? "Sending..." : "Submit"}
             </Button>
           </div>
         </form>

@@ -5,6 +5,8 @@ import NextNProgress from "nextjs-progressbar";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import { SessionProvider } from "next-auth/react";
+import { useTheme } from "../hooks/useTheme";
+import Layout from "../components/Layout";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -18,8 +20,9 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
           showOnShallow={false}
           options={{ showSpinner: false }}
         />
-        <Header />
-        <Component {...pageProps} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Provider>
     </SessionProvider>
   );
