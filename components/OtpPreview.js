@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import Form from "./Form";
 import Input from "./Input";
@@ -6,8 +6,8 @@ import { useRouter } from "next/router";
 import Button from "./Button";
 import customAxios from "../config/axios";
 import Alert from "./Alert";
-import { useInterval } from "../hooks/useInterval";
 import { useTimer } from "../hooks/useTimer";
+import { useTheme } from "../hooks/useTheme";
 
 function OtpPreview({ email }) {
   const { register, handleSubmit, formState } = useForm();
@@ -17,7 +17,9 @@ function OtpPreview({ email }) {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [resendLoading, setResendLoading] = useState(false);
-  const { otpExpireTime, start } = useTimer({ duration: 30 });
+  const { otpExpireTime, start } = useTimer({ duration: 60 });
+  const { isLightTheme } = useTheme();
+
   // resend otp
   const resendOtp = async () => {
     // enable loading state
@@ -45,9 +47,15 @@ function OtpPreview({ email }) {
   return (
     <div className="h-[calc(100vh-82px)]  flex items-center justify-center">
       <Form>
-        <p> {otpExpireTime}</p>
+        <p className={`${!isLightTheme && "text-white"} font-bold`}>
+          {otpExpireTime}
+        </p>
 
-        <h2 className="text-center font-medium text-2xl mt-2 mb-4">
+        <h2
+          className={`text-center font-medium text-2xl mt-2 mb-4 ${
+            !isLightTheme && "text-white"
+          }`}
+        >
           <span className="text-emerald-500"> Email-OTP </span> Verification
         </h2>
         {error && <Alert danger errorMessage={error} />}

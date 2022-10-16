@@ -9,12 +9,12 @@ import Button from "../../components/Button";
 import customAxios from "../../config/axios";
 import OtpPreview from "../../components/OtpPreview";
 import { useTheme } from "../../hooks/useTheme";
+import { showToast } from "../../utils/showToast";
 
 function SignUp() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   const { firstname, lastname, email, password, confirmPassword } = errors;
-  const router = useRouter();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [otpPriview, setOtpPreview] = useState(false);

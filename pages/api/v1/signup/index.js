@@ -93,7 +93,7 @@ export default async function handler(req, res) {
         password: hashedPassword,
         otp: {
           otpcode: hashedOtp,
-          expiresIn: Date.now() + 30000,
+          expiresIn: Date.now() + 60000,
         },
       });
       await newUser.save();
