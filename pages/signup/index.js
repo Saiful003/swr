@@ -34,6 +34,11 @@ function SignUp() {
       setError(null);
       setUserMail(data.email);
       setOtpPreview(true);
+      // success toast
+      showToast({
+        text: "Sign up successfull",
+        type: "success",
+      });
     } catch (err) {
       setLoading(false);
       setOtpPreview(false);

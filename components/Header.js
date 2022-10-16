@@ -9,6 +9,7 @@ import IconButton from "./IconButton";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
+import { showToast } from "../utils/showToast";
 
 function Header() {
   const { data: session, status } = useSession();
@@ -44,6 +45,11 @@ function Header() {
                 <Button
                   onClick={() => {
                     signOut({ redirect: false });
+                    // success logout toast
+                    showToast({
+                      text: "Logout successfull",
+                      type: "success",
+                    });
                     router.replace("/login");
                   }}
                   outline

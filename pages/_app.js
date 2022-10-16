@@ -1,12 +1,11 @@
 import "../styles/globals.css";
 import React from "react";
-import Header from "../components/Header";
 import NextNProgress from "nextjs-progressbar";
 import { Provider } from "react-redux";
 import store from "../store/store";
 import { SessionProvider } from "next-auth/react";
-import { useTheme } from "../hooks/useTheme";
 import Layout from "../components/Layout";
+import { Toaster } from "react-hot-toast";
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
@@ -22,6 +21,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
         />
         <Layout>
           <Component {...pageProps} />
+          <Toaster />
         </Layout>
       </Provider>
     </SessionProvider>

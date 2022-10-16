@@ -6,6 +6,7 @@ import customAxios from "../config/axios";
 import { useState } from "react";
 import { useTheme } from "../hooks/useTheme";
 import classNames from "classnames";
+import { showToast } from "../utils/showToast";
 
 function CreateNewFriend() {
   const { register, handleSubmit, formState } = useForm();
@@ -42,6 +43,11 @@ function CreateNewFriend() {
     await customAxios.post("/create", form);
     // disable loading state
     setLoading(false);
+    // show success toast
+    showToast({
+      text: "Successfully Created!",
+      type: "success",
+    });
     router.replace("/");
   };
 

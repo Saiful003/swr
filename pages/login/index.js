@@ -8,6 +8,7 @@ import Button from "../../components/Button";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useTheme } from "../../hooks/useTheme";
+import { showToast } from "../../utils/showToast";
 
 function Login() {
   const { register, handleSubmit, formState } = useForm();
@@ -22,7 +23,8 @@ function Login() {
   const onSubmit = async (data) => {
     // enable loading state
     setLoading(true);
-    // actual login process goes to here
+
+    // // actual login process goes to here
     const result = await signIn("credentials", {
       ...data,
       redirect: false,
@@ -38,6 +40,11 @@ function Login() {
     // normal stuff.../
     setLoading(false);
     setError(null);
+    // show success toast
+    showToast({
+      text: "Login Successfull",
+      type: "success",
+    });
     router.push("/");
   };
   return (

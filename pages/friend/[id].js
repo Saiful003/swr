@@ -6,6 +6,7 @@ import Form from "../../components/Form";
 import Input from "../../components/Input";
 import customAxios from "../../config/axios";
 import { useTheme } from "../../hooks/useTheme";
+import { showToast } from "../../utils/showToast";
 
 function FriendDetail({ friend }) {
   const [imageFile, setImageFile] = useState(null);
@@ -34,6 +35,10 @@ function FriendDetail({ friend }) {
   const onSubmit = async (data) => {
     if (!imageUpload) {
       await customAxios.put(`/friends/${router.query.id}`, data);
+      showToast({
+        text: "Successfully Updated!",
+        type: "success",
+      });
       router.replace("/");
       return;
     }
@@ -56,6 +61,10 @@ function FriendDetail({ friend }) {
 
     // disable loading state
     setLoading(false);
+    showToast({
+      text: "Successfully Image Updated!",
+      type: "success",
+    });
     router.replace("/");
   };
 
