@@ -72,13 +72,19 @@ function OtpPreview({ email }) {
           />
 
           {!otpExpireTime && (
-            <a onClick={resendOtp} href="#">
-              {resendLoading ? "Processing..." : "Resend"}
+            <a
+              className={` inline-block mt-2 py-1 px-2 border font-medium ${
+                !isLightTheme && "text-white"
+              }`}
+              onClick={resendOtp}
+              href="#"
+            >
+              {resendLoading ? "Sending..." : "Resend"}
             </a>
           )}
           <div className="mt-3">
             <Button type="submit" fill>
-              {loading ? "Sending..." : "Submit"}
+              {loading ? "Processing..." : "Submit"}
             </Button>
           </div>
         </form>

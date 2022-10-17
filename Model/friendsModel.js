@@ -32,6 +32,7 @@ const FriendsSchema = new Schema(
       },
     },
     user_id: {
+      // to grab only _id Field
       type: Schema.Types.ObjectId,
       ref: "User",
     },
