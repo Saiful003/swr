@@ -14,7 +14,7 @@ function Profile() {
     <Container>
       <div> Profile </div>
       {findUserPosts().map((userPost) => (
-        <pre> {JSON.stringify(userPost, null, 2)} </pre>
+        <pre key={userPost._id}> {JSON.stringify(userPost, null, 2)} </pre>
       ))}
     </Container>
   );
