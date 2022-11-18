@@ -1,6 +1,6 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import User from "../../../Model/userModel";
+import { User } from "../../../utils/models";
 import bcrypt from "bcrypt";
 import dbConnect from "../../../lib/dbConnect";
 
@@ -43,7 +43,7 @@ export const authOptions = {
     async session({ session, user, token }) {
       session.user.name = token.username;
       session.user.image = null;
-      session.user.user_id = token.sub;
+      session.user.userId = token.sub;
       return session;
     },
     async jwt({ token, user, account, profile, isNewUser }) {

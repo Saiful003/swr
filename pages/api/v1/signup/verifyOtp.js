@@ -1,7 +1,7 @@
-import dbConnect from "../../../../lib/dbConnect";
-import User from "../../../../Model/userModel";
+import { User } from "../../../../utils/models";
 import { responseHandler } from "../../../../utils/responseHandler";
 import bcrypt from "bcrypt";
+import dbConnect from "../../../../lib/dbConnect";
 
 export default async function handler(req, res) {
   const { method, body } = req;

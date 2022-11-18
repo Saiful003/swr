@@ -1,5 +1,5 @@
 import dbConnect from "../../../../lib/dbConnect";
-import User from "../../../../Model/userModel";
+import { User } from "../../../../utils/models";
 import { responseHandler } from "../../../../utils/responseHandler";
 import bcrypt from "bcrypt";
 import { generateOtp } from "../../../../utils/generateOtp";

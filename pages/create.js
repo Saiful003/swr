@@ -11,9 +11,8 @@ import { showToast } from "../utils/showToast";
 function CreateNewFriend() {
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
-  const { name, age, introduceBy, profession } = errors;
+  const { title } = errors;
   const router = useRouter();
-  const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { isLightTheme } = useTheme();
@@ -25,22 +24,9 @@ function CreateNewFriend() {
 
   // onSubmit function
   const onSubmit = async (data) => {
-    //validation first
-    if (!imageFile) {
-      return setError("Please insert your friend image");
-    }
-
     // enable loading state
     setLoading(true);
-
-    const form = new FormData();
-    form.append("name", data.name);
-    form.append("age", data.age);
-    form.append("introduceBy", data.introduceBy);
-    form.append("profession", data.profession);
-    form.append("gender", data.gender);
-    form.append("file", imageFile);
-    await customAxios.post("/create", form);
+    await customAxios.post("/post/create", data);
     // disable loading state
     setLoading(false);
     // show success toast
@@ -48,7 +34,7 @@ function CreateNewFriend() {
       text: "Successfully Created!",
       type: "success",
     });
-    router.replace("/");
+    router.push("/");
   };
 
   return (
@@ -60,59 +46,18 @@ function CreateNewFriend() {
       >
         Create new friend
       </h2>
-      <form
-        encType="multipart/form-data"
-        className="flex flex-col gap-2"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
         <Input
-          isError={name?.type === "required"}
-          errorMessage={name?.message}
+          isError={title?.type === "required"}
+          errorMessage={title?.message}
           type="text"
-          placeholder="Enter Your Friend Name"
-          label="Friend Name"
-          {...register("name", {
-            required: "Please enter your friend name",
+          placeholder="Enter post title"
+          label="Post title"
+          {...register("title", {
+            required: "Post title required",
           })}
         />
-        <Input
-          isError={profession?.type === "required"}
-          errorMessage={profession?.message}
-          type="text"
-          placeholder="Enter Your Friend Profession"
-          label="Profession"
-          {...register("profession", {
-            required: "This sector field is required.",
-          })}
-        />
-        <Input
-          isError={introduceBy?.type === "required"}
-          errorMessage={introduceBy?.message}
-          type="text"
-          placeholder="How introduce your friend ?"
-          label="Introduce"
-          {...register("introduceBy", {
-            required: "This introduce field is required.",
-          })}
-        />
-        <Input
-          isError={age?.type === "required"}
-          errorMessage={age?.message}
-          type="number"
-          placeholder="Enter your friend age"
-          label="Age"
-          {...register("age", {
-            required: "This age field is required.",
-          })}
-        />
-        <select {...register("gender")}>
-          <option selected value="male">
-            male
-          </option>
-          <option value="female">female</option>
-        </select>
-        {error && <span className="text-red-500 text-sm">{error}</span>}
-        <input onChange={handleImage} type="file" name="file" />
+
         <button
           type="submit"
           className="px-3 py-2 mt-2 rounded-sm bg-emerald-500 hover:bg-emerald-600 text-white font-medium"
