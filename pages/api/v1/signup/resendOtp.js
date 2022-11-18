@@ -4,6 +4,7 @@ import { responseHandler } from "../../../../utils/responseHandler";
 import bcrypt from "bcrypt";
 import { sendOtpViaMail } from "../../../../lib/sendOtpMail";
 import { generateOtp } from "../../../../utils/generateOtp";
+// ....
 
 export default async function handler(req, res) {
   const { method, body } = req;
