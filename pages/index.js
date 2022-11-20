@@ -12,7 +12,7 @@ export async function getStaticProps() {
   return {
     props: {
       fallback: {
-        "/api/v1": data,
+        "/api/v1/": data,
       },
     },
     // revalidate props
@@ -39,9 +39,11 @@ const Home = () => {
         <a>Create New Post</a>
       </Link>
       <br />
-      <Link href="/user/profile">
-        <a>{`${session?.user?.name}'s Profile`}</a>
-      </Link>
+      {session && (
+        <Link href="/user/profile">
+          <a>{`${session.user.name}'s Profile`}</a>
+        </Link>
+      )}
     </Container>
   );
 };
@@ -49,11 +51,7 @@ const Home = () => {
 export default function App({ fallback }) {
   return (
     <SWRConfig value={{ fallback }}>
-      {/* create boundary */}
       <Home />
     </SWRConfig>
   );
 }
-
-// asasasasss
-// aasasa

@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import customAxios from "../../config/axios";
 import Container from "../../components/Container";
 import { useSession } from "next-auth/react";
-import useSWR, { SWRConfig, useSWRConfig } from "swr";
+import useSWR, { SWRConfig, useSWRConfig, unstable_serialize } from "swr";
 import { fetcher } from "../../utils/fetcher";
 
 // Generates `/posts/1` and `/posts/2`
@@ -16,12 +16,12 @@ export async function getStaticPaths() {
   };
 }
 export async function getStaticProps({ params: { id } }) {
-  // fetch data
+  // fetch data`/api/v1/post/${id}`
   const { data } = await customAxios.get(`/post/${id}`);
   return {
     props: {
       fallback: {
-        [`/api/v1/post/${id}`]: data,
+        [unstable_serialize(["api", "v1", "post", id])]: data,
       },
     },
   };
@@ -36,7 +36,7 @@ function Post() {
   const {
     query: { id },
   } = useRouter();
-  const { data } = useSWR(`/api/v1/post/${id}`, fetcher);
+  const { data } = useSWR(["api", "v1", "post", id], fetcher);
   const {
     message: { comments, ...post },
   } = data;
