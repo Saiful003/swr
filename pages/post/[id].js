@@ -30,7 +30,6 @@ export async function getStaticProps({ params: { id } }) {
 function Post() {
   const [comment, setComment] = useState("");
   const { data: session } = useSession();
-  const router = useRouter();
   const { mutate } = useSWRConfig();
 
   const {
@@ -51,14 +50,6 @@ function Post() {
       await sendComment();
       mutate(`/api/v1/post/${id}`);
       setComment("");
-    } else {
-      if (!comment) {
-        alert("Please input comment");
-        return;
-      }
-      if (!session) {
-        return router.push("/login");
-      }
     }
   };
 
