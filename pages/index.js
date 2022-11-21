@@ -5,19 +5,19 @@ import { usePost } from "../hooks/usePost";
 import customAxios from "../config/axios";
 import { SWRConfig } from "swr";
 
-export async function getStaticProps() {
-  // fetch data
-  const { data } = await customAxios.get("/");
+// export async function getStaticProps() {
+//   // fetch data
+//   const { data } = await customAxios.get("/");
 
-  return {
-    props: {
-      fallback: {
-        "/api/v1/": data,
-      },
-    },
-    // revalidate props
-  };
-}
+//   return {
+//     props: {
+//       fallback: {
+//         "/api/v1/": data,
+//       },
+//     },
+//     // revalidate props
+//   };
+// }
 
 const Home = () => {
   const { data: session } = useSession();
@@ -47,11 +47,11 @@ const Home = () => {
     </Container>
   );
 };
-
-export default function App({ fallback }) {
-  return (
-    <SWRConfig value={{ fallback }}>
-      <Home />
-    </SWRConfig>
-  );
-}
+export default Home;
+// export default function App({ fallback }) {
+//   return (
+//     <SWRConfig value={{ fallback }}>
+//       <Home />
+//     </SWRConfig>
+//   );
+// }
